@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import logoMark from "@/assets/c__Users_my_pc_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_Asset_4_4x-d160fbde-e50b-4622-8200-79ebf5ae3bcd.png";
+import logoMark from "@/assets/c__Users_my_pc_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_Asset_4_2x-8b2af1b3-1f26-4899-b43c-a1a2050d00b6.png";
 
 export function BrandLogo({ className }: { className?: string }) {
   return (
