@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-brand-red: #D71920;
+  --color-brand-black: #111111;
+  --color-brand-light: #F5F6F7;
+  --color-brand-success: #22C55E;
+
+  --shadow-premium: 0 10px 30px -15px rgba(17, 17, 17, 0.22);
+
+  --background: #F5F6F7;
+  --foreground: #111111;
+
+  --font-sans: 'Poppins', sans-serif;
+
+  --radius: 0.95rem;
+  --radius-xl: 0.95rem;
+  --radius-2xl: 1.2rem;
+
+  --background-image-brand-gradient: linear-gradient(90deg, #D71920 0%, #ae0b12 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #F5F6F7;
+  color: #111111;
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+}
