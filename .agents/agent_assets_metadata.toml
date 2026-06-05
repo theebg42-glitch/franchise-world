@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "uESqbrY_OzoM5-gkd4Wcs"
+uri = "file://franchise-world-html.zip"
+type = "unspecified"
+title = "Franchise World — Built HTML Site"
