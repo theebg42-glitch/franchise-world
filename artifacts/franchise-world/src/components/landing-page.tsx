@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle2,
@@ -9,12 +9,14 @@ import {
   GraduationCap,
   Headphones,
   Lock,
+  Menu,
   Percent,
   PackageOpen,
   Quote,
   ShieldCheck,
   Sparkles,
   Star,
+  X,
   Zap,
   BadgeCheck
 } from "lucide-react";
@@ -51,6 +53,7 @@ export function LandingPage() {
   const [selectedCategory, setSelectedCategory] = useState<"ALL" | (typeof categories)[number]>("ALL");
   const [selectedOpportunity, setSelectedOpportunity] = useState<Opportunity | null>(null);
   const [openModal, setOpenModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const activeSection = useScrollSection(navItems.map((i) => i.id));
   const categoryTabs: Array<"ALL" | (typeof categories)[number]> = ["ALL", ...categories];
 
@@ -68,13 +71,17 @@ export function LandingPage() {
     window.location.href = `${paymentGatewayBase}?${params.toString()}`;
   };
 
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
   return (
     <div className="overflow-x-hidden bg-brand-light text-brand-black">
 
       {/* ── NAV ── */}
-      <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/90 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6">
           <BrandLogo className="shrink-0" />
+
+          {/* Desktop nav */}
           <nav className="hidden items-center gap-6 lg:flex">
             {navItems.map((item) => (
               <a key={item.id} href={item.href}
@@ -83,14 +90,57 @@ export function LandingPage() {
               </a>
             ))}
           </nav>
-          <a href={opportunitiesHref} className="shrink-0">
-            <Button size="sm" className="hidden sm:inline-flex">{UNLOCK_CTA}</Button>
-            <Button size="sm" className="sm:hidden">{UNLOCK_CTA_SHORT}</Button>
-          </a>
+
+          <div className="flex items-center gap-2">
+            <a href={opportunitiesHref} className="hidden sm:block shrink-0">
+              <Button size="sm">{UNLOCK_CTA}</Button>
+            </a>
+            {/* Hamburger for mobile/tablet */}
+            <button
+              className="flex items-center justify-center rounded-md p-2 text-zinc-700 hover:bg-zinc-100 lg:hidden"
+              onClick={() => setMobileMenuOpen((v) => !v)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile menu dropdown */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden border-t border-zinc-100 bg-white lg:hidden"
+            >
+              <nav className="flex flex-col px-4 py-3 gap-1">
+                {navItems.map((item) => (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                      activeSection === item.id
+                        ? "bg-red-50 text-brand-red"
+                        : "text-zinc-700 hover:bg-zinc-50 hover:text-brand-red"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                <a href={opportunitiesHref} onClick={closeMobileMenu} className="mt-2">
+                  <Button className="w-full" size="sm">{UNLOCK_CTA}</Button>
+                </a>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
-      <main className="mx-auto max-w-7xl px-4 pb-32 pt-6 md:px-6 md:pb-16">
+      <main className="mx-auto max-w-7xl px-4 pb-24 pt-6 md:px-6 md:pb-16">
 
         {/* ── HERO ── */}
         <section className="grid items-center gap-8 rounded-2xl border border-zinc-200 bg-white p-6 shadow-premium md:grid-cols-2 md:p-10">
@@ -104,20 +154,34 @@ export function LandingPage() {
               Join India's consultant platform. Refer investors, we close the deal — you earn up to 1% commission.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a href={opportunitiesHref}><Button size="lg" className="w-full sm:w-auto">{UNLOCK_CTA}</Button></a>
-              <a href="#opportunities"><Button variant="outline" size="lg" className="w-full sm:w-auto">Browse Opportunities <ArrowRight className="h-4 w-4" /></Button></a>
+              <a href={opportunitiesHref} className="w-full sm:w-auto">
+                <Button size="lg" className="w-full sm:w-auto">{UNLOCK_CTA}</Button>
+              </a>
+              <a href="#opportunities" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  Browse Opportunities <ArrowRight className="h-4 w-4" />
+                </Button>
+              </a>
             </div>
-            <div className="mt-5 flex flex-wrap gap-5 text-sm text-zinc-500">
+            <div className="mt-5 flex flex-wrap gap-4 text-sm text-zinc-500">
               <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-brand-red" /> Secure Payment</span>
               <span className="flex items-center gap-1.5"><Zap className="h-4 w-4 text-brand-red" /> Instant Access</span>
               <span className="flex items-center gap-1.5"><Headphones className="h-4 w-4 text-brand-red" /> Dedicated Support</span>
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex items-center justify-center">
-            <div className="relative aspect-[4/3] w-full max-w-lg">
-              <img src={heroRightFlowImage} alt="Consultant workflow" className="absolute inset-0 h-full w-full object-contain mix-blend-multiply" />
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex items-center justify-center"
+          >
+            <div className="relative w-full max-w-lg">
+              <img
+                src={heroRightFlowImage}
+                alt="Consultant workflow"
+                className="h-auto w-full object-contain mix-blend-multiply"
+              />
             </div>
           </motion.div>
         </section>
@@ -147,8 +211,13 @@ export function LandingPage() {
         <SectionBlock id="opportunities" title="Franchise Opportunities">
           <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-2 sm:flex-wrap sm:overflow-visible">
             {categoryTabs.map((cat) => (
-              <Button key={cat} variant={cat === selectedCategory ? "default" : "outline"} size="sm"
-                className="shrink-0 text-xs sm:text-sm" onClick={() => setSelectedCategory(cat)}>
+              <Button
+                key={cat}
+                variant={cat === selectedCategory ? "default" : "outline"}
+                size="sm"
+                className="shrink-0 text-xs sm:text-sm"
+                onClick={() => setSelectedCategory(cat)}
+              >
                 {cat}
               </Button>
             ))}
@@ -176,7 +245,7 @@ export function LandingPage() {
 
         {/* ── TESTIMONIALS ── */}
         <section id="testimonials" className="py-10">
-          <h2 className="text-center text-3xl font-bold">Consultant Success Stories</h2>
+          <h2 className="text-center text-2xl font-bold sm:text-3xl">Consultant Success Stories</h2>
           <p className="mt-2 text-center text-zinc-500">Real people. Real commissions.</p>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {[
@@ -216,10 +285,14 @@ export function LandingPage() {
         {/* ── CTA BANNER ── */}
         <section className="rounded-2xl bg-brand-gradient px-6 py-10 text-white shadow-premium md:px-10">
           <h2 className="text-2xl font-bold md:text-3xl">Ready to earn from your network?</h2>
-          <p className="mt-2 text-white/80 max-w-lg">Unlock access for {UNLOCK_AMOUNT}. Get your consultant workspace, brand materials, and dedicated support — today.</p>
+          <p className="mt-2 text-white/80 max-w-lg">
+            Unlock access for {UNLOCK_AMOUNT}. Get your consultant workspace, brand materials, and dedicated support — today.
+          </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
             <a href={opportunitiesHref}>
-              <Button className="bg-white text-brand-red hover:bg-zinc-100" size="lg">{UNLOCK_CTA} <ArrowRight className="h-4 w-4" /></Button>
+              <Button className="bg-white text-brand-red hover:bg-zinc-100 w-full sm:w-auto" size="lg">
+                {UNLOCK_CTA} <ArrowRight className="h-4 w-4" />
+              </Button>
             </a>
             <span className="text-sm text-white/70">Secure payment · Instant access · Dedicated SPOC</span>
           </div>
@@ -232,7 +305,7 @@ export function LandingPage() {
               <Accordion type="single" collapsible>
                 {faqItems.map((q) => (
                   <AccordionItem key={q} value={q}>
-                    <AccordionTrigger>{q}</AccordionTrigger>
+                    <AccordionTrigger className="text-left">{q}</AccordionTrigger>
                     <AccordionContent>{faqAnswers[q]}</AccordionContent>
                   </AccordionItem>
                 ))}
@@ -259,23 +332,33 @@ export function LandingPage() {
 
       {/* ── MOBILE STICKY CTA ── */}
       <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-zinc-200 bg-white/95 p-3 backdrop-blur md:hidden">
-        <a href={opportunitiesHref}><Button className="w-full">{UNLOCK_CTA_SHORT} <ChevronRight className="h-4 w-4" /></Button></a>
+        <a href={opportunitiesHref}>
+          <Button className="w-full">{UNLOCK_CTA_SHORT} <ChevronRight className="h-4 w-4" /></Button>
+        </a>
       </div>
 
       {/* ── OPPORTUNITY MODAL ── */}
       <Dialog open={openModal} onOpenChange={setOpenModal}>
-        <DialogContent className="max-h-[92vh] max-w-4xl overflow-y-auto p-0">
+        <DialogContent className="max-h-[92vh] max-w-4xl overflow-y-auto p-0 mx-4 sm:mx-auto">
           {selectedOpportunity && (
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="p-5 sm:p-7">
               <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[200px_1fr_220px] lg:items-start">
-                <OpportunityBrandLogo brandId={selectedOpportunity.id} brandName={selectedOpportunity.name} variant="modal"
-                  className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none" />
+                <OpportunityBrandLogo
+                  brandId={selectedOpportunity.id}
+                  brandName={selectedOpportunity.name}
+                  variant="modal"
+                  className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none"
+                />
 
                 <div>
-                  <span className="inline-flex items-center rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-brand-red">{selectedOpportunity.category}</span>
-                  <DialogTitle className="mt-2 text-2xl font-bold">{selectedOpportunity.name}</DialogTitle>
+                  <span className="inline-flex items-center rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-brand-red">
+                    {selectedOpportunity.category}
+                  </span>
+                  <DialogTitle className="mt-2 text-xl font-bold sm:text-2xl">{selectedOpportunity.name}</DialogTitle>
                   <p className="text-sm text-zinc-500 mt-1">{selectedOpportunity.industry}</p>
-                  {!selectedOpportunity.comingSoon && <p className="mt-3 text-sm leading-relaxed text-zinc-600">{selectedOpportunity.description}</p>}
+                  {!selectedOpportunity.comingSoon && (
+                    <p className="mt-3 text-sm leading-relaxed text-zinc-600">{selectedOpportunity.description}</p>
+                  )}
                 </div>
 
                 <div className="space-y-3 lg:sticky lg:top-4">
@@ -318,11 +401,15 @@ export function LandingPage() {
 
                   <div className="mt-5 grid gap-4 lg:grid-cols-2">
                     <div className="rounded-xl border border-zinc-200 p-5">
-                      <p className="font-bold mb-3 flex items-center gap-2"><ClipboardCheck className="h-4 w-4 text-brand-red" /> About Brand</p>
+                      <p className="font-bold mb-3 flex items-center gap-2">
+                        <ClipboardCheck className="h-4 w-4 text-brand-red" /> About Brand
+                      </p>
                       <p className="text-sm leading-7 text-zinc-600">{selectedOpportunity.about}</p>
                     </div>
                     <div className="rounded-xl border border-zinc-200 p-5">
-                      <p className="font-bold mb-3 flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-brand-red" /> Highlights</p>
+                      <p className="font-bold mb-3 flex items-center gap-2">
+                        <ShieldCheck className="h-4 w-4 text-brand-red" /> Highlights
+                      </p>
                       <div className="space-y-2">
                         {(selectedOpportunity.opportunityHighlights ?? []).map((h) => (
                           <div key={h} className="flex items-start gap-2 text-sm text-zinc-700">
@@ -335,8 +422,10 @@ export function LandingPage() {
 
                   {(selectedOpportunity.investmentDetails ?? []).length > 0 && (
                     <div className="mt-5">
-                      <p className="font-bold mb-3 flex items-center gap-2"><BadgeCheck className="h-4 w-4 text-brand-red" /> Investment Details</p>
-                      <div className="grid gap-3 sm:grid-cols-3 md:grid-cols-5">
+                      <p className="font-bold mb-3 flex items-center gap-2">
+                        <BadgeCheck className="h-4 w-4 text-brand-red" /> Investment Details
+                      </p>
+                      <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
                         {(selectedOpportunity.investmentDetails ?? []).map((row) => (
                           <div key={row.label} className="rounded-xl border border-zinc-200 p-4 text-center">
                             <p className="text-xs font-semibold text-zinc-700">{row.label}</p>
@@ -347,12 +436,12 @@ export function LandingPage() {
                     </div>
                   )}
 
-                  <div className="mt-5 flex items-center justify-between gap-4 rounded-xl border border-red-100 bg-red-50/50 p-4">
+                  <div className="mt-5 flex flex-col gap-4 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <p className="font-bold">Unlock Full Access</p>
                       <p className="text-sm text-zinc-500 mt-0.5">Pay {UNLOCK_AMOUNT} to connect with the brand.</p>
                     </div>
-                    <Button className="shrink-0" size="lg" onClick={() => redirectToPayment(selectedOpportunity)}>
+                    <Button className="shrink-0 w-full sm:w-auto" size="lg" onClick={() => redirectToPayment(selectedOpportunity)}>
                       <Lock className="h-4 w-4" /> {UNLOCK_ACCESS}
                     </Button>
                   </div>
