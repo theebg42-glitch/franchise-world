@@ -5,8 +5,7 @@ export interface Opportunity {
     | "Food & Beverage"
     | "Automotive & EV"
     | "Hospitality & Wellness"
-    | "Retail"
-    | "Miscellaneous";
+    | "Retail";
   industry: string;
   investment: string;
   description: string;
@@ -31,8 +30,7 @@ export const categories: Opportunity["category"][] = [
   "Food & Beverage",
   "Automotive & EV",
   "Hospitality & Wellness",
-  "Retail",
-  "Miscellaneous"
+  "Retail"
 ];
 
 const comingSoonBase = (id: string, name: string, category: Opportunity["category"], industry: string, investment: string): Opportunity => ({
