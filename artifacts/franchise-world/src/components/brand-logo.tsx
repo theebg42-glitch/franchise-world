@@ -1,16 +1,54 @@
 import { cn } from "@/lib/utils";
-import logoMark from "@/assets/c__Users_my_pc_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_Asset_4_2x-8b2af1b3-1f26-4899-b43c-a1a2050d00b6.png";
 
-export function BrandLogo({ className }: { className?: string }) {
+type BrandLogoProps = {
+  variant?: "dark" | "light";
+  className?: string;
+};
+
+export function BrandLogo({ variant = "dark", className }: BrandLogoProps) {
+  const isLight = variant === "light";
+  const textColor = isLight ? "text-white" : "text-brand-black";
+  const subColor = isLight ? "text-white/60" : "text-zinc-500";
+
   return (
-    <div className={cn("flex items-center gap-2", className)}>
-      <div className="relative h-9 w-9 overflow-hidden rounded-lg bg-brand-black">
-        <img src={logoMark} alt="Franchise World logo mark" className="h-full w-full object-cover object-center" />
-      </div>
+    <div className={cn("inline-flex items-center gap-2.5", className)}>
+      <LogoMark color={isLight ? "#ffffff" : "#0c1220"} accent="#D71920" />
       <div className="leading-tight">
-        <p className="text-base font-bold text-brand-black">FranchiseWorld</p>
-        <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-500">Consultant</p>
+        <p className={cn("text-[15px] font-extrabold tracking-tight", textColor)}>
+          FranchiseWorld
+        </p>
+        <p className={cn("text-[9px] font-semibold uppercase tracking-[0.2em]", subColor)}>
+          Consultant
+        </p>
       </div>
     </div>
+  );
+}
+
+function LogoMark({ color, accent }: { color: string; accent: string }) {
+  return (
+    <svg
+      width="36"
+      height="36"
+      viewBox="0 0 36 36"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <rect width="36" height="36" rx="8" fill={color} />
+      <text
+        x="18"
+        y="23"
+        textAnchor="middle"
+        fontFamily="'Poppins', sans-serif"
+        fontWeight="800"
+        fontSize="16"
+        fill={accent}
+        letterSpacing="-0.5"
+      >
+        FW
+      </text>
+      <polygon points="23,7 27,7 25,11" fill={accent} />
+    </svg>
   );
 }

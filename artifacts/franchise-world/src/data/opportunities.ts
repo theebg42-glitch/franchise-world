@@ -153,36 +153,4 @@ export const opportunities: Opportunity[] = [
   },
   comingSoonBase("ageon", "AgeOn", "Retail", "Lifestyle Retail", "₹15L – ₹40L"),
   comingSoonBase("daewoo", "Daewoo", "Retail", "Consumer Products Retail", "₹25L – ₹70L"),
-  {
-    id: "rental",
-    name: "Rental",
-    category: "Miscellaneous",
-    industry: "EV Rental / Asset Partner Program",
-    investment: "₹10L – ₹50L",
-    description: "Investors purchase EV assets and lease them into eBikeGo's managed rental and logistics ecosystem.",
-    businessModel: "Asset-Backed EV Rental Partner",
-    about: "Investors purchase EV assets and lease them into eBikeGo's managed rental and logistics ecosystem for recurring monthly income.",
-    whyPreferred: "",
-    marketDemand: "",
-    supportProvided: "",
-    consultantBenefits: "",
-    commissionPotential: "Up to 1%",
-    modelType: "Asset-Backed EV Rental Partner",
-    commission: "Up to 1%",
-    demandTag: "Validated",
-    opportunityHighlights: [
-      "Start at ₹10L",
-      "Scale to ₹50L",
-      "Monthly returns",
-      "4-Year tenure",
-      "10% salvage value"
-    ],
-    investmentDetails: [
-      { label: "10 Bikes", value: "₹10L" },
-      { label: "20 Bikes", value: "₹20L" },
-      { label: "25 Bikes", value: "₹25L" },
-      { label: "50 Bikes", value: "₹50L" },
-      { label: "Tenure", value: "4 Years" }
-    ]
-  }
 ];

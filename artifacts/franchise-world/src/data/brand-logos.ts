@@ -6,7 +6,6 @@ import carltonSalonLogo from "@/assets/c__Users_my_pc_AppData_Roaming_Cursor_Use
 import carltonWellnessLogo from "@/assets/brand-carlton-wellness-center.png";
 import chhotaBheemLogo from "@/assets/c__Users_my_pc_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_Chhota_Bheem-dea142f6-259a-4f14-b8ee-797a7da883ac.png";
 import daewooLogo from "@/assets/brand-daewoo.png";
-import ebikeGoLogo from "@/assets/c__Users_my_pc_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_Rental-381fe882-6675-4350-bfe4-bd90ee0a932a.png";
 import goMillLogo from "@/assets/c__Users_my_pc_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_Go_Mill-010730c2-0111-42c9-a5d8-247e71589c2b.png";
 import natufLogo from "@/assets/c__Users_my_pc_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_Natuf-d715e02b-db5f-45f3-aeac-324e6ce5dea1.png";
 import nativeTouchLogo from "@/assets/c__Users_my_pc_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_Native_Touch-b15aeaba-99a8-4e5e-8a11-827ba726cfca.png";
@@ -31,6 +30,5 @@ export const opportunityLogos: Partial<Record<Opportunity["id"], string>> = {
   ageon: ageonLogo,
   daewoo: daewooLogo,
   "chhota-bheem": chhotaBheemLogo,
-  tarzan: tarzanLogo,
-  rental: ebikeGoLogo
+  tarzan: tarzanLogo
 };
