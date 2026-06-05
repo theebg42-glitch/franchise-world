@@ -4,11 +4,9 @@ export interface Opportunity {
   category:
     | "Food & Beverage"
     | "Automotive & EV"
-    | "Beauty & Wellness"
-    | "Home & Furniture"
+    | "Hospitality & Wellness"
     | "Retail"
-    | "Kids Entertainment"
-    | "Real Estate";
+    | "Miscellaneous";
   industry: string;
   investment: string;
   description: string;
@@ -19,13 +17,12 @@ export interface Opportunity {
   supportProvided: string;
   consultantBenefits: string;
   commissionPotential: string;
-
-  // Modal wireframe fields (optional with safe fallbacks)
+  comingSoon?: boolean;
   areaRequired?: string;
   modelType?: string;
   commission?: string;
   payoutTime?: string;
-  demandTag?: "High Demand" | "Growing Demand" | "Stable Demand";
+  demandTag?: "High Demand" | "Growing Demand" | "Stable Demand" | "Validated";
   opportunityHighlights?: string[];
   investmentDetails?: { label: string; value: string }[];
 }
@@ -33,27 +30,159 @@ export interface Opportunity {
 export const categories: Opportunity["category"][] = [
   "Food & Beverage",
   "Automotive & EV",
-  "Beauty & Wellness",
-  "Home & Furniture",
+  "Hospitality & Wellness",
   "Retail",
-  "Kids Entertainment",
-  "Real Estate"
+  "Miscellaneous"
 ];
 
+const comingSoonBase = (id: string, name: string, category: Opportunity["category"], industry: string, investment: string): Opportunity => ({
+  id,
+  name,
+  category,
+  industry,
+  investment,
+  description: "",
+  businessModel: "",
+  about: "",
+  whyPreferred: "",
+  marketDemand: "",
+  supportProvided: "",
+  consultantBenefits: "",
+  commissionPotential: "",
+  comingSoon: true
+});
+
 export const opportunities: Opportunity[] = [
-  { id: "adhira-appa", name: "Adhira & Appa", category: "Food & Beverage", industry: "South Indian QSR", investment: "₹20L - ₹50L", description: "Fast-growing family dining format with strong repeat customer demand.", businessModel: "FOCO / Franchise Owned Outlet", about: "Brand known for high-footfall neighborhood stores and efficient operations.", whyPreferred: "Strong margins with multi-format store options.", marketDemand: "Increasing demand for trusted family food brands in tier 2 and tier 3 cities.", supportProvided: "Site guidance, staff training, launch plan and marketing playbook.", consultantBenefits: "Easy-to-sell product with strong brand recognition.", commissionPotential: "Up to 1% of finalized investment value.", areaRequired: "250–600 sq.ft", modelType: "Franchise Outlet", commission: "Up to 1%", payoutTime: "30–45 days", demandTag: "High Demand", opportunityHighlights: ["High repeat customer base", "Strong unit economics", "Simple operations playbook", "Quick launch support"], investmentDetails: [{ label: "Setup Cost", value: "₹18L - ₹40L" }, { label: "Security Deposit", value: "₹1L - ₹3L" }, { label: "Area Required", value: "250–600 sq.ft" }, { label: "Preferred Locations", value: "High-footfall neighborhoods" }] },
-  { id: "natuf", name: "Natuf", category: "Food & Beverage", industry: "Healthy Food Concept", investment: "₹15L - ₹35L", description: "Modern healthy menu concept designed for urban professionals.", businessModel: "Kiosk / Compact Cafe", about: "Focuses on high-volume quick service with healthy positioning.", whyPreferred: "Lower setup cost and fast break-even model.", marketDemand: "Rising preference for health-first food offerings.", supportProvided: "Menu setup, vendor onboarding and branding support.", consultantBenefits: "Appeals to first-time investors looking for compact formats.", commissionPotential: "Performance-based commissions on successful closures.", areaRequired: "120–300 sq.ft", modelType: "Kiosk / Compact Cafe", commission: "Up to 1%", payoutTime: "30–60 days", demandTag: "Growing Demand", opportunityHighlights: ["Health-first positioning", "Low capex formats", "Fast break-even potential", "Strong urban audience"], investmentDetails: [{ label: "Setup Cost", value: "₹12L - ₹28L" }, { label: "Area Required", value: "120–300 sq.ft" }, { label: "Ideal Locations", value: "Office hubs & malls" }, { label: "Team Size", value: "4–8 staff" }] },
-  { id: "go-mill", name: "Go Mill", category: "Food & Beverage", industry: "Quick Service Brand", investment: "₹30L - ₹50L", description: "Scalable QSR model optimized for urban and highway locations.", businessModel: "Multi-unit Franchise", about: "Built for speed with standardized operations.", whyPreferred: "High visibility format with strong outlet economics.", marketDemand: "Growing preference for trusted QSR brands.", supportProvided: "Store design SOPs, hiring support and launch assistance.", consultantBenefits: "Simple value proposition for investor conversations.", commissionPotential: "Commission slab linked to deal value.", areaRequired: "350–900 sq.ft", modelType: "QSR Outlet", commission: "Up to 1%", payoutTime: "30–45 days", demandTag: "High Demand", opportunityHighlights: ["Standardized SOPs", "High visibility format", "Scalable multi-unit plan", "Launch marketing support"], investmentDetails: [{ label: "Setup Cost", value: "₹28L - ₹48L" }, { label: "Area Required", value: "350–900 sq.ft" }, { label: "Locations", value: "Highways & city hotspots" }, { label: "Support", value: "Design + hiring + launch" }] },
-  { id: "pro-mill", name: "Pro Mill", category: "Food & Beverage", industry: "Premium Casual Dining", investment: "₹25L - ₹50L", description: "Premium dining experience with curated regional menu appeal.", businessModel: "Franchise Outlet", about: "Combines premium customer experience with process-driven operations.", whyPreferred: "Strong per-ticket revenue potential.", marketDemand: "Demand for premium yet approachable dining experiences.", supportProvided: "Brand launch toolkit, interiors guideline and manager training.", consultantBenefits: "Ideal for premium-location investor leads.", commissionPotential: "Up to 1% on finalized investment.", areaRequired: "500–1200 sq.ft", modelType: "Dine-in + Delivery", commission: "Up to 1%", payoutTime: "45–60 days", demandTag: "Stable Demand", opportunityHighlights: ["Premium experience", "Higher ticket size", "Delivery-friendly menu", "Operations training included"], investmentDetails: [{ label: "Setup Cost", value: "₹22L - ₹45L" }, { label: "Area Required", value: "500–1200 sq.ft" }, { label: "Format", value: "Dine-in + Delivery" }, { label: "Launch Support", value: "Toolkit + training" }] },
-  { id: "acer-electric", name: "Acer Electric", category: "Automotive & EV", industry: "EV Retail & Service", investment: "₹50L - ₹1Cr", description: "Emerging EV ecosystem franchise with retail and service offerings.", businessModel: "Showroom + Service", about: "Positioned to capture EV transition demand.", whyPreferred: "High growth segment with early mover advantage.", marketDemand: "Rapid EV adoption across key Indian markets.", supportProvided: "Technical training, inventory planning and service SOPs.", consultantBenefits: "Attracts growth-focused investors.", commissionPotential: "High-ticket commissions due to larger investment size.", areaRequired: "800–1800 sq.ft", modelType: "Showroom + Service", commission: "Up to 1%", payoutTime: "45–75 days", demandTag: "High Demand", opportunityHighlights: ["High-growth EV category", "Service revenue potential", "Brand-backed training", "Strong investor interest"], investmentDetails: [{ label: "Setup Cost", value: "₹50L - ₹1Cr" }, { label: "Area Required", value: "800–1800 sq.ft" }, { label: "Model", value: "Retail + Service" }, { label: "Training", value: "Technical + sales SOPs" }] },
-  { id: "carlton-salon", name: "Carlton Salon", category: "Beauty & Wellness", industry: "Premium Salon", investment: "₹30L - ₹70L", description: "Established premium salon concept with recurring customer demand.", businessModel: "Managed Salon Franchise", about: "Brand with consistent positioning and premium customer base.", whyPreferred: "Recurring revenue and strong city scalability.", marketDemand: "Steady growth in organized beauty services.", supportProvided: "Stylist training, launch campaigns and operations monitoring.", consultantBenefits: "Easy positioning with aspirational brand appeal.", commissionPotential: "Attractive payouts on every successful location closure.", areaRequired: "600–1500 sq.ft", modelType: "Premium Salon", commission: "Up to 1%", payoutTime: "30–60 days", demandTag: "Stable Demand", opportunityHighlights: ["Recurring services revenue", "Premium positioning", "Staff training included", "City scalability"], investmentDetails: [{ label: "Setup Cost", value: "₹30L - ₹70L" }, { label: "Area Required", value: "600–1500 sq.ft" }, { label: "Format", value: "Premium salon studio" }, { label: "Support", value: "Training + launch campaigns" }] },
-  { id: "carlton-spa", name: "Carlton Spa", category: "Beauty & Wellness", industry: "Wellness Spa", investment: "₹35L - ₹85L", description: "Wellness and rejuvenation franchise format with premium offerings.", businessModel: "Spa Center Franchise", about: "Experience-led format designed for metro and high-income zones.", whyPreferred: "Premium pricing and strong repeat customer potential.", marketDemand: "Growing wellness spending across urban centers.", supportProvided: "Therapy protocols, staff onboarding and launch strategy.", consultantBenefits: "Premium investor profiles and higher ticket sizes.", commissionPotential: "Up to 1% on final investment.", areaRequired: "800–2000 sq.ft", modelType: "Wellness Spa", commission: "Up to 1%", payoutTime: "45–75 days", demandTag: "Growing Demand", opportunityHighlights: ["Premium pricing", "High repeat potential", "Therapy protocols included", "Metro-friendly format"], investmentDetails: [{ label: "Setup Cost", value: "₹35L - ₹85L" }, { label: "Area Required", value: "800–2000 sq.ft" }, { label: "Model", value: "Spa center" }, { label: "Support", value: "SOPs + onboarding" }] },
-  { id: "carlton-wellness", name: "Carlton Wellness Center", category: "Beauty & Wellness", industry: "Integrated Wellness", investment: "₹45L - ₹1Cr", description: "Comprehensive wellness center combining services under one brand.", businessModel: "Center-Based Franchise", about: "Cross-service model increases average revenue per customer.", whyPreferred: "Diversified revenue model with premium positioning.", marketDemand: "Consumers seek integrated wellness destinations.", supportProvided: "Setup guidance, team training and growth support.", consultantBenefits: "Stronger close rates with experienced investors.", commissionPotential: "High-payout category due to larger deal values.", areaRequired: "1200–3000 sq.ft", modelType: "Wellness Center", commission: "Up to 1%", payoutTime: "45–90 days", demandTag: "High Demand", opportunityHighlights: ["Multiple services under one roof", "Premium positioning", "Higher ARPU potential", "Growth support included"], investmentDetails: [{ label: "Setup Cost", value: "₹45L - ₹1Cr" }, { label: "Area Required", value: "1200–3000 sq.ft" }, { label: "Model", value: "Integrated wellness center" }, { label: "Support", value: "Training + growth support" }] },
-  { id: "nonstop-physio", name: "NonStop Physio", category: "Beauty & Wellness", industry: "Physiotherapy Clinics", investment: "₹20L - ₹50L", description: "Healthcare-led physio clinic format focused on urban demand.", businessModel: "Clinic Franchise", about: "Process-driven model with quality-focused delivery standards.", whyPreferred: "Healthcare credibility with repeat patient flow.", marketDemand: "Increased awareness of preventive and rehab care.", supportProvided: "Clinical SOPs, team training and branding support.", consultantBenefits: "Suitable for medically oriented investors.", commissionPotential: "Consistent payouts on each closed center.", areaRequired: "600–1200 sq.ft", modelType: "Clinic Franchise", commission: "Up to 1%", payoutTime: "30–60 days", demandTag: "Growing Demand", opportunityHighlights: ["Healthcare-led demand", "Repeat patient flow", "Clinical SOPs", "Branding support"], investmentDetails: [{ label: "Setup Cost", value: "₹20L - ₹50L" }, { label: "Area Required", value: "600–1200 sq.ft" }, { label: "Model", value: "Physio clinic" }, { label: "Support", value: "SOPs + training" }] },
-  { id: "carlton-furniture", name: "Carlton Furniture", category: "Home & Furniture", industry: "Furniture Retail", investment: "₹40L - ₹90L", description: "Modern home and office furniture concept with scalable store model.", businessModel: "Showroom Franchise", about: "Catalog-driven model with high-value product categories.", whyPreferred: "Strong average order value and city expansion opportunities.", marketDemand: "Rising demand for branded organized furniture retail.", supportProvided: "Store planning, merchandising strategy and marketing support.", consultantBenefits: "High ticket opportunity with premium investor interest.", commissionPotential: "Higher payout due to larger investment bracket.", areaRequired: "1500–3500 sq.ft", modelType: "Showroom Franchise", commission: "Up to 1%", payoutTime: "45–90 days", demandTag: "Stable Demand", opportunityHighlights: ["High order value category", "Showroom-driven sales", "Merchandising support", "City expansion"], investmentDetails: [{ label: "Setup Cost", value: "₹40L - ₹90L" }, { label: "Area Required", value: "1500–3500 sq.ft" }, { label: "Format", value: "Showroom" }, { label: "Support", value: "Store planning + marketing" }] },
-  { id: "ageon", name: "Ageon", category: "Retail", industry: "Lifestyle Retail", investment: "₹15L - ₹40L", description: "Lifestyle retail model built for high-footfall urban and semi-urban markets.", businessModel: "Retail Outlet", about: "Flexible outlet size with strong category mix.", whyPreferred: "Moderate investment and wider market adaptability.", marketDemand: "Stable demand across aspirational retail segments.", supportProvided: "Visual merchandising and launch marketing support.", consultantBenefits: "Fast-moving opportunity for first-time investors.", commissionPotential: "Volume-driven commissions across multiple closes.", areaRequired: "300–900 sq.ft", modelType: "Retail Outlet", commission: "Up to 1%", payoutTime: "30–60 days", demandTag: "Stable Demand", opportunityHighlights: ["Aspirational retail demand", "Flexible store sizes", "Merchandising support", "Launch marketing"], investmentDetails: [{ label: "Setup Cost", value: "₹15L - ₹40L" }, { label: "Area Required", value: "300–900 sq.ft" }, { label: "Format", value: "Retail outlet" }, { label: "Support", value: "VM + launch" }] },
-  { id: "daewoo", name: "Daewoo", category: "Retail", industry: "Consumer Products Retail", investment: "₹25L - ₹70L", description: "Trusted consumer products ecosystem with broad category fit.", businessModel: "Exclusive Retail Franchise", about: "Legacy-backed brand with cross-category demand.", whyPreferred: "Strong brand trust and repeat sales profile.", marketDemand: "Consistent demand in organized consumer retail.", supportProvided: "Inventory guidance, campaign support and operations setup.", consultantBenefits: "Strong conversion with brand recall.", commissionPotential: "Competitive commissions with milestone incentives.", areaRequired: "500–1400 sq.ft", modelType: "Exclusive Retail", commission: "Up to 1%", payoutTime: "45–75 days", demandTag: "Stable Demand", opportunityHighlights: ["Legacy trust", "Broad category fit", "Inventory guidance", "Campaign support"], investmentDetails: [{ label: "Setup Cost", value: "₹25L - ₹70L" }, { label: "Area Required", value: "500–1400 sq.ft" }, { label: "Format", value: "Exclusive retail" }, { label: "Support", value: "Inventory + ops setup" }] },
-  { id: "chhota-bheem", name: "Chhota Bheem", category: "Kids Entertainment", industry: "Family Entertainment", investment: "₹30L - ₹80L", description: "Kids-focused experience center built on a highly recognized IP.", businessModel: "Experience Center Franchise", about: "High engagement family format with birthday and event revenue streams.", whyPreferred: "Popular brand among families and children.", marketDemand: "Growing spend on family entertainment experiences.", supportProvided: "Center blueprint, activity modules and launch campaigns.", consultantBenefits: "Emotional brand pull simplifies pitch conversations.", commissionPotential: "Strong payouts on successful center launches.", areaRequired: "1200–3000 sq.ft", modelType: "Experience Center", commission: "Up to 1%", payoutTime: "45–90 days", demandTag: "Growing Demand", opportunityHighlights: ["Strong kids IP pull", "Birthday/event revenue", "Activity modules provided", "High engagement"], investmentDetails: [{ label: "Setup Cost", value: "₹30L - ₹80L" }, { label: "Area Required", value: "1200–3000 sq.ft" }, { label: "Format", value: "Experience center" }, { label: "Support", value: "Blueprint + campaigns" }] },
-  { id: "tarzan", name: "Tarzan", category: "Real Estate", industry: "Property Advisory Franchise", investment: "₹20L - ₹60L", description: "Real estate advisory model with investor-focused transaction support.", businessModel: "Consulting Office Franchise", about: "Built for high-value advisory and referral-based closures.", whyPreferred: "Recurring pipeline from investor and developer networks.", marketDemand: "Persistent demand for trusted property advisory support.", supportProvided: "Lead qualification framework and legal process guidance.", consultantBenefits: "High average deal value and repeat referrals.", commissionPotential: "Performance-linked commissions with high upside.", areaRequired: "200–600 sq.ft", modelType: "Consulting Office", commission: "Up to 1%", payoutTime: "30–60 days", demandTag: "Stable Demand", opportunityHighlights: ["High-value advisory", "Referral-driven pipeline", "Legal process guidance", "Repeat referrals"], investmentDetails: [{ label: "Setup Cost", value: "₹20L - ₹60L" }, { label: "Area Required", value: "200–600 sq.ft" }, { label: "Format", value: "Consulting office" }, { label: "Support", value: "Framework + guidance" }] },
-  { id: "rental", name: "Rental", category: "Real Estate", industry: "Rental Management", investment: "₹12L - ₹35L", description: "Rental and property management service model for urban demand.", businessModel: "Service-Led Franchise", about: "Lean operational model focused on recurring rental management revenue.", whyPreferred: "Lower capex with recurring income potential.", marketDemand: "Rising rental market in major and emerging cities.", supportProvided: "Process setup, tenant workflow and branding support.", consultantBenefits: "Accessible entry point for service-oriented investors.", commissionPotential: "Recurring and closure-based earning opportunities.", areaRequired: "150–400 sq.ft", modelType: "Service-Led Franchise", commission: "Up to 1%", payoutTime: "30–60 days", demandTag: "Growing Demand", opportunityHighlights: ["Low capex model", "Recurring revenue potential", "Urban rental demand", "Lean team operations"], investmentDetails: [{ label: "Setup Cost", value: "₹12L - ₹35L" }, { label: "Area Required", value: "150–400 sq.ft" }, { label: "Format", value: "Service-led office" }, { label: "Support", value: "Process + branding" }] }
+  comingSoonBase("adhira-appa", "Adhira & Appa", "Food & Beverage", "South Indian QSR", "₹20L – ₹50L"),
+  comingSoonBase("natuf", "Natuf", "Food & Beverage", "Healthy Food Concept", "₹15L – ₹35L"),
+  comingSoonBase("go-mill", "Go Mill", "Food & Beverage", "Quick Service Brand", "₹30L – ₹50L"),
+  comingSoonBase("pro-mill", "Pro Mill", "Food & Beverage", "Premium Casual Dining", "₹25L – ₹50L"),
+  comingSoonBase("chhota-bheem", "Chhota Bheem", "Food & Beverage", "Family Entertainment", "₹30L – ₹80L"),
+  {
+    id: "acer-electric",
+    name: "Acer Electric",
+    category: "Automotive & EV",
+    industry: "EV Retail / Appliances / E-Cycles / FOCO Dealership",
+    investment: "₹30L – ₹1 Cr",
+    description: "EV-led retail and passive investment opportunity covering electric mobility products, inventory deployment, dealership expansion, and FOCO models.",
+    businessModel: "Passive Inventory / FOCO Dealership",
+    about: "EV-led retail and passive investment opportunity covering electric mobility products, inventory deployment, dealership expansion, and FOCO models.",
+    whyPreferred: "",
+    marketDemand: "",
+    supportProvided: "",
+    consultantBenefits: "",
+    commissionPotential: "Up to 1%",
+    modelType: "Passive Inventory / FOCO Dealership",
+    commission: "Up to 1%",
+    demandTag: "Validated",
+    opportunityHighlights: [
+      "Appliance Model – ₹30L",
+      "2% Guaranteed Monthly Return",
+      "Bicycle Model – ₹30L",
+      "FOCO Tier 1 – ₹1 Cr",
+      "FOCO Tier 2 – ₹80L"
+    ],
+    investmentDetails: [
+      { label: "Appliance Inventory", value: "₹30L" },
+      { label: "Bicycle Model", value: "₹30L" },
+      { label: "Tier 1", value: "₹1 Cr" },
+      { label: "Tier 2", value: "₹80L" }
+    ]
+  },
+  {
+    id: "carlton-salon",
+    name: "Carlton Salon",
+    category: "Hospitality & Wellness",
+    industry: "Premium Salon",
+    investment: "₹30L – ₹70L",
+    description: "Established premium salon concept with recurring customer demand.",
+    businessModel: "Managed Salon Franchise",
+    about: "Brand with consistent positioning and premium customer base.",
+    whyPreferred: "Recurring revenue and strong city scalability.",
+    marketDemand: "Steady growth in organized beauty services.",
+    supportProvided: "Stylist training, launch campaigns and operations monitoring.",
+    consultantBenefits: "Easy positioning with aspirational brand appeal.",
+    commissionPotential: "Up to 1%",
+    areaRequired: "600–1500 sq.ft",
+    modelType: "Premium Salon",
+    commission: "Up to 1%",
+    payoutTime: "30–60 days",
+    demandTag: "Stable Demand",
+    opportunityHighlights: ["Recurring services revenue", "Premium positioning", "Staff training included", "City scalability"],
+    investmentDetails: [
+      { label: "Setup Cost", value: "₹30L – ₹70L" },
+      { label: "Area Required", value: "600–1500 sq.ft" },
+      { label: "Format", value: "Premium salon studio" },
+      { label: "Support", value: "Training + launch campaigns" }
+    ]
+  },
+  comingSoonBase("carlton-wellness", "Carlton Wellness Center", "Hospitality & Wellness", "Integrated Wellness", "₹45L – ₹1 Cr"),
+  comingSoonBase("nonstop-physio", "NonStop Physio", "Hospitality & Wellness", "Physiotherapy Clinics", "₹20L – ₹50L"),
+  {
+    id: "tarzan",
+    name: "Tarzan",
+    category: "Hospitality & Wellness",
+    industry: "Nature Retreat Territory Master Franchise",
+    investment: "₹2 Cr – ₹5 Cr",
+    description: "Territory master franchise opportunity focused on building regional nature hospitality networks.",
+    businessModel: "Territory Master Franchise",
+    about: "Tarzan Nature Retreat is a territory master franchise opportunity focused on building regional nature hospitality networks through eco-stays, farmhouses, retreat developments, and investor partnerships.",
+    whyPreferred: "",
+    marketDemand: "",
+    supportProvided: "",
+    consultantBenefits: "",
+    commissionPotential: "Up to 1%",
+    modelType: "Territory Master Franchise",
+    commission: "Up to 1%",
+    demandTag: "Validated",
+    opportunityHighlights: [
+      "Zone 1: ₹5 Cr",
+      "Zone 2: ₹3.5 Cr",
+      "Zone 3: ₹2 Cr",
+      "Licensing: ₹10L–75L",
+      "Modular Investments: ₹35L–80L+",
+      "Profit-sharing farmstay model"
+    ],
+    investmentDetails: [
+      { label: "Zone 1", value: "₹5 Cr" },
+      { label: "Zone 2", value: "₹3.5 Cr" },
+      { label: "Zone 3", value: "₹2 Cr" },
+      { label: "Licensing", value: "₹10L–75L" },
+      { label: "Modular Ticket", value: "₹35L–80L+" }
+    ]
+  },
+  comingSoonBase("ageon", "AgeOn", "Retail", "Lifestyle Retail", "₹15L – ₹40L"),
+  comingSoonBase("daewoo", "Daewoo", "Retail", "Consumer Products Retail", "₹25L – ₹70L"),
+  {
+    id: "rental",
+    name: "Rental",
+    category: "Miscellaneous",
+    industry: "EV Rental / Asset Partner Program",
+    investment: "₹10L – ₹50L",
+    description: "Investors purchase EV assets and lease them into eBikeGo's managed rental and logistics ecosystem.",
+    businessModel: "Asset-Backed EV Rental Partner",
+    about: "Investors purchase EV assets and lease them into eBikeGo's managed rental and logistics ecosystem for recurring monthly income.",
+    whyPreferred: "",
+    marketDemand: "",
+    supportProvided: "",
+    consultantBenefits: "",
+    commissionPotential: "Up to 1%",
+    modelType: "Asset-Backed EV Rental Partner",
+    commission: "Up to 1%",
+    demandTag: "Validated",
+    opportunityHighlights: [
+      "Start at ₹10L",
+      "Scale to ₹50L",
+      "Monthly returns",
+      "4-Year tenure",
+      "10% salvage value"
+    ],
+    investmentDetails: [
+      { label: "10 Bikes", value: "₹10L" },
+      { label: "20 Bikes", value: "₹20L" },
+      { label: "25 Bikes", value: "₹25L" },
+      { label: "50 Bikes", value: "₹50L" },
+      { label: "Tenure", value: "4 Years" }
+    ]
+  }
 ];
