@@ -1,14 +1,9 @@
 export const faqItems = [
-  "How does the platform work?",
   "Why do I pay ₹500?",
   "What do I receive after payment?",
-  "Can I unlock multiple opportunities?",
-  "Do I need franchise experience?",
   "How are commissions calculated?",
-  "Who closes the deal?",
-  "How do I receive commission payments?",
-  "Can I work part-time?",
-  "How do I contact support?"
+  "Do I need franchise experience?",
+  "Who closes the deal?"
 ];
 
 export const faqAnswers: Record<string, string> = {
