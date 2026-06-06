@@ -146,7 +146,7 @@ export function LeadCaptureForm({ open, onClose, brandId, brandName, paymentGate
                   <SelectTrigger className={errors.occupation ? "border-red-400" : ""}>
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="z-[300]">
                     {OCCUPATIONS.map((o) => <SelectItem key={o} value={o}>{o}</SelectItem>)}
                   </SelectContent>
                 </Select>
@@ -158,7 +158,7 @@ export function LeadCaptureForm({ open, onClose, brandId, brandName, paymentGate
                 <SelectTrigger className={errors.budget ? "border-red-400" : ""}>
                   <SelectValue placeholder="Select budget range" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="z-[300]">
                   {BUDGETS.map((b) => <SelectItem key={b} value={b}>{b}</SelectItem>)}
                 </SelectContent>
               </Select>

@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { trackEvent, AnalyticsEvents } from "@/lib/analytics";
 import { RUPEE } from "@/lib/constants";
 
-const PRESETS = [100000, 500000, 1000000, 2500000, 5000000];
+const PRESETS = [2500000, 5000000, 10000000, 20000000, 50000000];
 const COMMISSION_RATE = 0.01;
 
 function formatIndian(n: number): string {
@@ -19,8 +19,8 @@ function parseIndian(s: string): number {
 type Props = { compact?: boolean };
 
 export function EarningsCalculator({ compact = false }: Props) {
-  const [amount, setAmount] = useState(1000000);
-  const [inputStr, setInputStr] = useState("10,00,000");
+  const [amount, setAmount] = useState(2500000);
+  const [inputStr, setInputStr] = useState("25,00,000");
   const [tracked, setTracked] = useState(false);
 
   const commission = Math.round(amount * COMMISSION_RATE);
@@ -56,7 +56,7 @@ export function EarningsCalculator({ compact = false }: Props) {
           ))}
         </div>
         <div>
-          <label className="text-xs font-medium text-zinc-500">Custom amount</label>
+          <label className="text-xs font-medium text-zinc-500">Investment Amount</label>
           <div className="mt-1 flex items-center gap-2 rounded-xl border border-zinc-200 bg-white px-4 py-3">
             <span className="text-zinc-400">{RUPEE}</span>
             <input
@@ -101,7 +101,7 @@ export function EarningsCalculator({ compact = false }: Props) {
           </div>
 
           <div className="mb-6">
-            <label className="text-sm font-medium text-zinc-600">Or enter a custom amount</label>
+            <label className="text-sm font-medium text-zinc-600">Investment Amount</label>
             <div className="mt-2 flex items-center gap-2 rounded-xl border-2 border-zinc-200 bg-zinc-50 px-4 py-3 focus-within:border-brand-red transition">
               <span className="text-lg text-zinc-400">{RUPEE}</span>
               <input
