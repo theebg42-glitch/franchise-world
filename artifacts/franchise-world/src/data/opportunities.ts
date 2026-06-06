@@ -24,6 +24,8 @@ export interface Opportunity {
   demandTag?: "High Demand" | "Growing Demand" | "Stable Demand" | "Validated";
   opportunityHighlights?: string[];
   investmentDetails?: { label: string; value: string }[];
+  salesContact?: string;
+  salesContactFull?: string;
 }
 
 export const categories: Opportunity["category"][] = [
@@ -33,29 +35,28 @@ export const categories: Opportunity["category"][] = [
   "Retail"
 ];
 
-const comingSoonBase = (id: string, name: string, category: Opportunity["category"], industry: string, investment: string): Opportunity => ({
-  id,
-  name,
-  category,
-  industry,
-  investment,
-  description: "",
-  businessModel: "",
-  about: "",
-  whyPreferred: "",
-  marketDemand: "",
-  supportProvided: "",
-  consultantBenefits: "",
-  commissionPotential: "",
-  comingSoon: true
+const comingSoonBase = (
+  id: string,
+  name: string,
+  category: Opportunity["category"],
+  industry: string,
+  investment: string,
+  salesContact = "987XX XXXXX",
+  salesContactFull = "9876543210"
+): Opportunity => ({
+  id, name, category, industry, investment,
+  description: "", businessModel: "", about: "",
+  whyPreferred: "", marketDemand: "", supportProvided: "",
+  consultantBenefits: "", commissionPotential: "",
+  comingSoon: true, salesContact, salesContactFull
 });
 
 export const opportunities: Opportunity[] = [
-  comingSoonBase("adhira-appa", "Adhira & Appa", "Food & Beverage", "South Indian QSR", "₹20L – ₹50L"),
-  comingSoonBase("natuf", "Natuf", "Food & Beverage", "Healthy Food Concept", "₹15L – ₹35L"),
-  comingSoonBase("go-mill", "Go Mill", "Food & Beverage", "Quick Service Brand", "₹30L – ₹50L"),
-  comingSoonBase("pro-mill", "Pro Mill", "Food & Beverage", "Premium Casual Dining", "₹25L – ₹50L"),
-  comingSoonBase("chhota-bheem", "Chhota Bheem", "Food & Beverage", "Family Entertainment", "₹30L – ₹80L"),
+  comingSoonBase("adhira-appa", "Adhira & Appa", "Food & Beverage", "South Indian QSR", "₹20L – ₹50L", "987XX XXXXX", "9876543210"),
+  comingSoonBase("natuf", "Natuf", "Food & Beverage", "Healthy Food Concept", "₹15L – ₹35L", "912XX XXXXX", "9123456789"),
+  comingSoonBase("go-mill", "Go Mill", "Food & Beverage", "Quick Service Brand", "₹30L – ₹50L", "944XX XXXXX", "9445678901"),
+  comingSoonBase("pro-mill", "Pro Mill", "Food & Beverage", "Premium Casual Dining", "₹25L – ₹50L", "987XX XXXXX", "9870123456"),
+  comingSoonBase("chhota-bheem", "Chhota Bheem", "Food & Beverage", "Family Entertainment", "₹30L – ₹80L", "912XX XXXXX", "9120987654"),
   {
     id: "acer-electric",
     name: "Acer Electric",
@@ -65,11 +66,8 @@ export const opportunities: Opportunity[] = [
     description: "EV-led retail and passive investment opportunity covering electric mobility products, inventory deployment, dealership expansion, and FOCO models.",
     businessModel: "Passive Inventory / FOCO Dealership",
     about: "EV-led retail and passive investment opportunity covering electric mobility products, inventory deployment, dealership expansion, and FOCO models.",
-    whyPreferred: "",
-    marketDemand: "",
-    supportProvided: "",
-    consultantBenefits: "",
-    commissionPotential: "Up to 1%",
+    whyPreferred: "", marketDemand: "", supportProvided: "",
+    consultantBenefits: "", commissionPotential: "Up to 1%",
     modelType: "Passive Inventory / FOCO Dealership",
     commission: "Up to 1%",
     demandTag: "Validated",
@@ -85,7 +83,9 @@ export const opportunities: Opportunity[] = [
       { label: "Bicycle Model", value: "₹30L" },
       { label: "Tier 1", value: "₹1 Cr" },
       { label: "Tier 2", value: "₹80L" }
-    ]
+    ],
+    salesContact: "988XX XXXXX",
+    salesContactFull: "9889012345"
   },
   {
     id: "carlton-salon",
@@ -112,10 +112,12 @@ export const opportunities: Opportunity[] = [
       { label: "Area Required", value: "600–1500 sq.ft" },
       { label: "Format", value: "Premium salon studio" },
       { label: "Support", value: "Training + launch campaigns" }
-    ]
+    ],
+    salesContact: "981XX XXXXX",
+    salesContactFull: "9810123456"
   },
-  comingSoonBase("carlton-wellness", "Carlton Wellness Center", "Hospitality & Wellness", "Integrated Wellness", "₹45L – ₹1 Cr"),
-  comingSoonBase("nonstop-physio", "NonStop Physio", "Hospitality & Wellness", "Physiotherapy Clinics", "₹20L – ₹50L"),
+  comingSoonBase("carlton-wellness", "Carlton Wellness Center", "Hospitality & Wellness", "Integrated Wellness", "₹45L – ₹1 Cr", "982XX XXXXX", "9820234567"),
+  comingSoonBase("nonstop-physio", "NonStop Physio", "Hospitality & Wellness", "Physiotherapy Clinics", "₹20L – ₹50L", "993XX XXXXX", "9930345678"),
   {
     id: "tarzan",
     name: "Tarzan",
@@ -125,11 +127,8 @@ export const opportunities: Opportunity[] = [
     description: "Territory master franchise opportunity focused on building regional nature hospitality networks.",
     businessModel: "Territory Master Franchise",
     about: "Tarzan Nature Retreat is a territory master franchise opportunity focused on building regional nature hospitality networks through eco-stays, farmhouses, retreat developments, and investor partnerships.",
-    whyPreferred: "",
-    marketDemand: "",
-    supportProvided: "",
-    consultantBenefits: "",
-    commissionPotential: "Up to 1%",
+    whyPreferred: "", marketDemand: "", supportProvided: "",
+    consultantBenefits: "", commissionPotential: "Up to 1%",
     modelType: "Territory Master Franchise",
     commission: "Up to 1%",
     demandTag: "Validated",
@@ -147,8 +146,10 @@ export const opportunities: Opportunity[] = [
       { label: "Zone 3", value: "₹2 Cr" },
       { label: "Licensing", value: "₹10L–75L" },
       { label: "Modular Ticket", value: "₹35L–80L+" }
-    ]
+    ],
+    salesContact: "971XX XXXXX",
+    salesContactFull: "9712456789"
   },
-  comingSoonBase("ageon", "AgeOn", "Retail", "Lifestyle Retail", "₹15L – ₹40L"),
-  comingSoonBase("daewoo", "Daewoo", "Retail", "Consumer Products Retail", "₹25L – ₹70L"),
+  comingSoonBase("ageon", "AgeOn", "Retail", "Lifestyle Retail", "₹15L – ₹40L", "931XX XXXXX", "9313567890"),
+  comingSoonBase("daewoo", "Daewoo", "Retail", "Consumer Products Retail", "₹25L – ₹70L", "921XX XXXXX", "9216678901"),
 ];

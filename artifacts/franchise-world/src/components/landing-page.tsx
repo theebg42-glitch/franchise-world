@@ -2,37 +2,32 @@ import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
-  CheckCircle2,
   ChevronRight,
-  CircleDollarSign,
-  ClipboardCheck,
-  GraduationCap,
   Headphones,
-  Lock,
   Menu,
-  Percent,
-  PackageOpen,
-  Quote,
   ShieldCheck,
-  Sparkles,
   Star,
+  Quote,
   X,
   Zap,
-  BadgeCheck
 } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { ConsultantAvatar } from "@/components/consultant-avatar";
 import { OpportunityBrandLogo } from "@/components/opportunity-brand-logo";
+import { EarningsCalculator } from "@/components/earnings-calculator";
+import { OpportunityModal } from "@/components/opportunity-modal";
+import { LeadCaptureForm } from "@/components/lead-capture-form";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { categories, opportunities, type Opportunity } from "@/data/opportunities";
 import { faqAnswers, faqItems } from "@/data/content";
 import { useScrollSection } from "@/hooks/use-scroll-section";
+import { useUnlock } from "@/hooks/use-unlock";
 import { SectionBlock } from "@/sections/section-block";
-import { RUPEE, UNLOCK_ACCESS, UNLOCK_AMOUNT, UNLOCK_CTA, UNLOCK_CTA_SHORT } from "@/lib/constants";
+import { RUPEE, UNLOCK_AMOUNT, UNLOCK_CTA, UNLOCK_CTA_SHORT } from "@/lib/constants";
+import { trackEvent, AnalyticsEvents } from "@/lib/analytics";
 import heroRightFlowImage from "@/assets/c__Users_my_pc_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_ChatGPT_Image_Jun_2__2026__03_27_42_PM-cae05e62-9c82-4307-b851-ab823f4aefa7.png";
 import hariKrishnaShettyImage from "@/assets/consultants-hari-krishna-shetty.png";
 import nehaSharmaImage from "@/assets/consultants-neha-sharma.png";
@@ -41,6 +36,7 @@ import navathKumarImage from "@/assets/consultants-navath-kumar.png";
 const navItems = [
   { label: "How It Works", href: "#how-it-works", id: "how-it-works" },
   { label: "Opportunities", href: "#opportunities", id: "opportunities" },
+  { label: "Calculator", href: "#calculator", id: "calculator" },
   { label: "Success Stories", href: "#testimonials", id: "testimonials" },
   { label: "FAQ", href: "#faq", id: "faq" }
 ];
@@ -49,12 +45,15 @@ const opportunitiesHref = "#opportunities";
 const paymentGatewayBase =
   import.meta.env.VITE_PAYMENT_GATEWAY_URL ?? "https://payments.franchiseworldconsultant.com/checkout";
 
+type FlowState = "none" | "modal" | "lead-form";
+
 export function LandingPage() {
   const [selectedCategory, setSelectedCategory] = useState<"ALL" | (typeof categories)[number]>("ALL");
   const [selectedOpportunity, setSelectedOpportunity] = useState<Opportunity | null>(null);
-  const [openModal, setOpenModal] = useState(false);
+  const [flowState, setFlowState] = useState<FlowState>("none");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const activeSection = useScrollSection(navItems.map((i) => i.id));
+  const { isUnlocked, unlockBrand } = useUnlock();
   const categoryTabs: Array<"ALL" | (typeof categories)[number]> = ["ALL", ...categories];
 
   const filtered = useMemo(
@@ -62,12 +61,32 @@ export function LandingPage() {
     [selectedCategory]
   );
 
-  const openOpportunity = (o: Opportunity) => { setSelectedOpportunity(o); setOpenModal(true); };
+  const openOpportunity = (o: Opportunity) => {
+    setSelectedOpportunity(o);
+    setFlowState("modal");
+    trackEvent(AnalyticsEvents.VIEW_OPPORTUNITY, { brandId: o.id, brandName: o.name });
+  };
+
+  const openLeadForm = () => {
+    if (!selectedOpportunity) return;
+    setFlowState("lead-form");
+    trackEvent(AnalyticsEvents.LEAD_FORM_OPEN, { brandId: selectedOpportunity.id });
+  };
+
+  const closeAll = () => {
+    setFlowState("none");
+  };
+
+  const backToModal = () => setFlowState("modal");
+
   const redirectToPayment = (brand?: Opportunity) => {
+    const b = brand ?? selectedOpportunity;
     const params = new URLSearchParams({
       source: "Franchise World Landing Page",
-      ...(brand ? { brandName: brand.name, brandId: brand.id } : {})
+      ...(b ? { brandName: b.name, brandId: b.id } : {}),
+      amount: "499",
     });
+    trackEvent(AnalyticsEvents.PAYMENT_INITIATE, { brandId: b?.id, amount: 499 });
     window.location.href = `${paymentGatewayBase}?${params.toString()}`;
   };
 
@@ -80,9 +99,7 @@ export function LandingPage() {
       <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6">
           <BrandLogo className="shrink-0" />
-
-          {/* Desktop nav */}
-          <nav className="hidden items-center gap-6 lg:flex">
+          <nav className="hidden items-center gap-5 lg:flex">
             {navItems.map((item) => (
               <a key={item.id} href={item.href}
                 className={`text-sm font-medium transition-colors ${activeSection === item.id ? "text-brand-red" : "text-zinc-700 hover:text-brand-red"}`}>
@@ -90,12 +107,10 @@ export function LandingPage() {
               </a>
             ))}
           </nav>
-
           <div className="flex items-center gap-2">
             <a href={opportunitiesHref} className="hidden sm:block shrink-0">
               <Button size="sm">{UNLOCK_CTA}</Button>
             </a>
-            {/* Hamburger for mobile/tablet */}
             <button
               className="flex items-center justify-center rounded-md p-2 text-zinc-700 hover:bg-zinc-100 lg:hidden"
               onClick={() => setMobileMenuOpen((v) => !v)}
@@ -105,8 +120,6 @@ export function LandingPage() {
             </button>
           </div>
         </div>
-
-        {/* Mobile menu dropdown */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -118,16 +131,10 @@ export function LandingPage() {
             >
               <nav className="flex flex-col px-4 py-3 gap-1">
                 {navItems.map((item) => (
-                  <a
-                    key={item.id}
-                    href={item.href}
-                    onClick={closeMobileMenu}
+                  <a key={item.id} href={item.href} onClick={closeMobileMenu}
                     className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                      activeSection === item.id
-                        ? "bg-red-50 text-brand-red"
-                        : "text-zinc-700 hover:bg-zinc-50 hover:text-brand-red"
-                    }`}
-                  >
+                      activeSection === item.id ? "bg-red-50 text-brand-red" : "text-zinc-700 hover:bg-zinc-50 hover:text-brand-red"
+                    }`}>
                     {item.label}
                   </a>
                 ))}
@@ -147,8 +154,8 @@ export function LandingPage() {
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <Badge>India's Trusted Franchise Consultant Platform</Badge>
             <h1 className="mt-4 text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl">
-              <span className="block">Turn Your Network Into</span>
-              <span className="mt-1 block font-extrabold text-brand-red">Franchise Deal Income</span>
+              <span className="block">Turn Your Network Into A</span>
+              <span className="mt-1 block font-extrabold text-brand-red">Franchise Referral Business</span>
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-zinc-600">
               Join India's consultant platform. Refer investors, we close the deal — you earn up to 1% commission.
@@ -169,19 +176,11 @@ export function LandingPage() {
               <span className="flex items-center gap-1.5"><Headphones className="h-4 w-4 text-brand-red" /> Dedicated Support</span>
             </div>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex items-center justify-center"
-          >
+          <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex items-center justify-center">
             <div className="relative w-full max-w-lg">
-              <img
-                src={heroRightFlowImage}
-                alt="Consultant workflow"
-                className="h-auto w-full object-contain mix-blend-multiply"
-              />
+              <img src={heroRightFlowImage} alt="Consultant workflow"
+                className="h-auto w-full object-contain mix-blend-multiply" />
             </div>
           </motion.div>
         </section>
@@ -211,13 +210,8 @@ export function LandingPage() {
         <SectionBlock id="opportunities" title="Franchise Opportunities">
           <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-2 sm:flex-wrap sm:overflow-visible">
             {categoryTabs.map((cat) => (
-              <Button
-                key={cat}
-                variant={cat === selectedCategory ? "default" : "outline"}
-                size="sm"
-                className="shrink-0 text-xs sm:text-sm"
-                onClick={() => setSelectedCategory(cat)}
-              >
+              <Button key={cat} variant={cat === selectedCategory ? "default" : "outline"} size="sm"
+                className="shrink-0 text-xs sm:text-sm" onClick={() => setSelectedCategory(cat)}>
                 {cat}
               </Button>
             ))}
@@ -227,21 +221,45 @@ export function LandingPage() {
               <Card key={item.id} className="group overflow-hidden transition hover:-translate-y-0.5 hover:shadow-premium">
                 <CardContent className="flex h-full flex-col p-4">
                   <OpportunityBrandLogo brandId={item.id} brandName={item.name} variant="card" className="mb-3" />
-                  <h3 className="font-semibold">{item.name}</h3>
-                  <p className="text-xs text-zinc-500 mt-0.5">{item.industry}</p>
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <h3 className="font-semibold">{item.name}</h3>
+                      <p className="text-xs text-zinc-500 mt-0.5">{item.industry}</p>
+                    </div>
+                    {isUnlocked(item.id) && (
+                      <span className="shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700">
+                        Unlocked
+                      </span>
+                    )}
+                  </div>
                   <p className="mt-1 text-sm font-semibold text-brand-red">{item.investment}</p>
                   <p className="mt-1.5 text-xs text-zinc-500 flex-1 line-clamp-2">
                     {item.description || "Details coming soon"}
                   </p>
+                  {/* Masked contact preview */}
+                  <div className="mt-2 flex items-center gap-1.5 text-xs text-zinc-400">
+                    <span>Sales Contact:</span>
+                    <span className="font-mono font-medium">{item.salesContact ?? "987XX XXXXX"}</span>
+                  </div>
                   <div className="mt-4 flex flex-col gap-2">
-                    <Button className="w-full" size="sm" onClick={() => redirectToPayment(item)}>{UNLOCK_ACCESS}</Button>
-                    <Button className="w-full" size="sm" variant="outline" onClick={() => openOpportunity(item)}>View Details</Button>
+                    <Button className="w-full" size="sm" onClick={() => openOpportunity(item)}>
+                      View Opportunity
+                    </Button>
+                    {!isUnlocked(item.id) && (
+                      <Button className="w-full" size="sm" variant="outline"
+                        onClick={() => { setSelectedOpportunity(item); openLeadForm(); }}>
+                        Unlock – {UNLOCK_AMOUNT}
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
         </SectionBlock>
+
+        {/* ── EARNINGS CALCULATOR ── */}
+        <EarningsCalculator />
 
         {/* ── TESTIMONIALS ── */}
         <section id="testimonials" className="py-10">
@@ -338,119 +356,29 @@ export function LandingPage() {
       </div>
 
       {/* ── OPPORTUNITY MODAL ── */}
-      <Dialog open={openModal} onOpenChange={setOpenModal}>
-        <DialogContent className="max-h-[92vh] max-w-4xl overflow-y-auto p-0 mx-4 sm:mx-auto">
-          {selectedOpportunity && (
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="p-5 sm:p-7">
-              <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[200px_1fr_220px] lg:items-start">
-                <OpportunityBrandLogo
-                  brandId={selectedOpportunity.id}
-                  brandName={selectedOpportunity.name}
-                  variant="modal"
-                  className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none"
-                />
+      <OpportunityModal
+        open={flowState === "modal"}
+        opportunity={selectedOpportunity}
+        isUnlocked={selectedOpportunity ? isUnlocked(selectedOpportunity.id) : false}
+        onClose={closeAll}
+        onRequestUnlock={() => {
+          if (selectedOpportunity && isUnlocked(selectedOpportunity.id)) return;
+          setFlowState("lead-form");
+          if (selectedOpportunity) trackEvent(AnalyticsEvents.LEAD_FORM_OPEN, { brandId: selectedOpportunity.id });
+        }}
+        onPayNow={() => redirectToPayment()}
+      />
 
-                <div>
-                  <span className="inline-flex items-center rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-brand-red">
-                    {selectedOpportunity.category}
-                  </span>
-                  <DialogTitle className="mt-2 text-xl font-bold sm:text-2xl">{selectedOpportunity.name}</DialogTitle>
-                  <p className="text-sm text-zinc-500 mt-1">{selectedOpportunity.industry}</p>
-                  {!selectedOpportunity.comingSoon && (
-                    <p className="mt-3 text-sm leading-relaxed text-zinc-600">{selectedOpportunity.description}</p>
-                  )}
-                </div>
-
-                <div className="space-y-3 lg:sticky lg:top-4">
-                  {!selectedOpportunity.comingSoon && (
-                    <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-center">
-                      <p className="text-xs text-emerald-700 font-medium uppercase tracking-wide">Demand</p>
-                      <p className="mt-1 text-sm font-bold text-emerald-800">{selectedOpportunity.demandTag ?? "Validated"}</p>
-                      <p className="mt-3 text-xs text-zinc-500">Commission</p>
-                      <p className="text-lg font-bold text-brand-red">{selectedOpportunity.commission ?? "Up to 1%"}</p>
-                    </div>
-                  )}
-                  <Button className="w-full" size="lg" onClick={() => redirectToPayment(selectedOpportunity)}>
-                    <Lock className="h-4 w-4" /> {UNLOCK_ACCESS}
-                  </Button>
-                </div>
-              </div>
-
-              {selectedOpportunity.comingSoon ? (
-                <div className="mt-8 rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-10 text-center">
-                  <p className="font-semibold text-zinc-800">Opportunity Details Coming Soon</p>
-                  <p className="mt-1 text-sm text-zinc-500">Unlock now to be notified when details go live.</p>
-                  <Button className="mt-5" onClick={() => redirectToPayment(selectedOpportunity)}>{UNLOCK_ACCESS}</Button>
-                </div>
-              ) : (
-                <>
-                  <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
-                    {[
-                      { label: "Investment", value: selectedOpportunity.investment, icon: CircleDollarSign },
-                      { label: "Model", value: selectedOpportunity.modelType ?? selectedOpportunity.businessModel, icon: Sparkles },
-                      { label: "Commission", value: selectedOpportunity.commission ?? selectedOpportunity.commissionPotential, icon: Percent },
-                      { label: "Demand", value: selectedOpportunity.demandTag ?? "Validated", icon: BadgeCheck }
-                    ].map((item) => (
-                      <div key={item.label} className="rounded-xl border border-red-100 bg-red-50/40 p-4 text-center">
-                        <item.icon className="h-5 w-5 text-brand-red mx-auto" />
-                        <p className="mt-2 text-xs font-semibold text-zinc-700">{item.label}</p>
-                        <p className="mt-0.5 text-xs text-zinc-600">{item.value}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-5 grid gap-4 lg:grid-cols-2">
-                    <div className="rounded-xl border border-zinc-200 p-5">
-                      <p className="font-bold mb-3 flex items-center gap-2">
-                        <ClipboardCheck className="h-4 w-4 text-brand-red" /> About Brand
-                      </p>
-                      <p className="text-sm leading-7 text-zinc-600">{selectedOpportunity.about}</p>
-                    </div>
-                    <div className="rounded-xl border border-zinc-200 p-5">
-                      <p className="font-bold mb-3 flex items-center gap-2">
-                        <ShieldCheck className="h-4 w-4 text-brand-red" /> Highlights
-                      </p>
-                      <div className="space-y-2">
-                        {(selectedOpportunity.opportunityHighlights ?? []).map((h) => (
-                          <div key={h} className="flex items-start gap-2 text-sm text-zinc-700">
-                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />{h}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {(selectedOpportunity.investmentDetails ?? []).length > 0 && (
-                    <div className="mt-5">
-                      <p className="font-bold mb-3 flex items-center gap-2">
-                        <BadgeCheck className="h-4 w-4 text-brand-red" /> Investment Details
-                      </p>
-                      <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
-                        {(selectedOpportunity.investmentDetails ?? []).map((row) => (
-                          <div key={row.label} className="rounded-xl border border-zinc-200 p-4 text-center">
-                            <p className="text-xs font-semibold text-zinc-700">{row.label}</p>
-                            <p className="mt-1 text-sm font-medium text-brand-red">{row.value}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="mt-5 flex flex-col gap-4 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <p className="font-bold">Unlock Full Access</p>
-                      <p className="text-sm text-zinc-500 mt-0.5">Pay {UNLOCK_AMOUNT} to connect with the brand.</p>
-                    </div>
-                    <Button className="shrink-0 w-full sm:w-auto" size="lg" onClick={() => redirectToPayment(selectedOpportunity)}>
-                      <Lock className="h-4 w-4" /> {UNLOCK_ACCESS}
-                    </Button>
-                  </div>
-                </>
-              )}
-            </motion.div>
-          )}
-        </DialogContent>
-      </Dialog>
+      {/* ── LEAD CAPTURE FORM ── */}
+      {selectedOpportunity && (
+        <LeadCaptureForm
+          open={flowState === "lead-form"}
+          onClose={backToModal}
+          brandId={selectedOpportunity.id}
+          brandName={selectedOpportunity.name}
+          paymentGatewayBase={paymentGatewayBase}
+        />
+      )}
     </div>
   );
 }

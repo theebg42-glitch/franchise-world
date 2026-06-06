@@ -1,0 +1,421 @@
+# Franchise World Landing Page – New Feature Updates
+
+Please make the following changes to the existing Franchise World landing page. Maintain existing branding, responsiveness, animations, UI consistency, and current functionality.
+
+---
+
+# 1. Hero Section Headline Update
+
+Replace the current headline:
+
+Turn Your Network Into
+Franchise Deal Income
+
+With:
+
+Turn Your Network Into A Franchise Referral Business
+
+### Styling Requirements
+
+* Keep the current typography styling.
+* Keep the existing highlight color (orange/red).
+* Maintain responsive behavior across desktop, tablet, and mobile.
+* Ensure proper line breaks for readability.
+* Maintain current animation effects if present.
+
+---
+
+# 2. Opportunity Unlock System
+
+Implement a premium lead-unlock flow for every brand opportunity.
+
+When a user clicks **View Opportunity**, they should NOT immediately see full details.
+
+---
+
+## Sales Contact Section
+
+Display:
+
+Sales Contact:
+987XX XXXXX
+
+Only the first 3 digits should be visible.
+
+Examples:
+
+987XX XXXXX
+912XX XXXXX
+944XX XXXXX
+
+The remaining digits should remain hidden.
+
+---
+
+## Unlock Button
+
+Add button:
+
+**Unlock Sales Contact – ₹499**
+
+When clicked:
+
+### Step 1
+
+Open lead capture form.
+
+Required fields:
+
+* Full Name
+* Mobile Number
+* Email Address
+* City
+* Occupation
+* Investment Budget
+
+Validation required.
+
+---
+
+### Step 2
+
+After successful form submission:
+
+Redirect to payment flow.
+
+Amount:
+
+₹499
+
+---
+
+### Step 3
+
+After successful payment:
+
+Unlock and reveal:
+
+* Complete sales contact number
+* Opportunity resources
+* Downloads
+* Training Videos
+
+Store unlock status for logged-in user/session.
+
+---
+
+# 3. Downloads Section
+
+Add new button:
+
+**Downloads**
+
+Locked by default.
+
+When user has paid ₹499:
+
+Display:
+
+* Brand Brochure PDF
+* Investment Deck
+* Business Model Overview
+* Earnings Structure
+* Opportunity Presentation
+
+Provide download functionality.
+
+For unpaid users:
+
+Show:
+
+"Unlock this content for ₹499"
+
+---
+
+# 4. Training Videos Section
+
+Add new button:
+
+**Training Videos**
+
+Locked by default.
+
+When clicked by unpaid users:
+
+Show unlock popup.
+
+After payment:
+
+Display training preview.
+
+---
+
+## Training Preview Video
+
+For every brand:
+
+Show:
+
+30-second preview video.
+
+Purpose:
+
+Help users understand:
+
+* What the franchise opportunity is
+* How consultants earn
+* How the referral process works
+* What is included after unlocking
+
+Use placeholder video system if final videos are not yet available.
+
+Example:
+
+Training Preview (30 sec)
+Watch how this opportunity works before accessing full training content.
+
+---
+
+## Future Ready Structure
+
+Build training section in a way that supports:
+
+* Multiple videos
+* Video categories
+* Progress tracking
+* Future LMS integration
+
+---
+
+# 5. Global Price Update
+
+Currently:
+
+₹500
+
+Replace everywhere with:
+
+₹499
+
+Update:
+
+* Buttons
+* Pricing cards
+* Unlock popups
+* Checkout screens
+* Opportunity modals
+* Payment messages
+* Tooltips
+* Confirmation screens
+
+Perform global search.
+
+No ₹500 references should remain.
+
+---
+
+# 6. Earnings Calculator
+
+Add new section:
+
+## Franchise Earnings Calculator
+
+Placement:
+
+* Opportunity popup
+  OR
+* Dedicated earnings section
+
+---
+
+### Calculator Inputs
+
+Investment Amount
+
+Example:
+
+₹1,00,000
+
+₹5,00,000
+
+₹10,00,000
+
+₹25,00,000
+
+₹50,00,000
+
+Custom values allowed.
+
+---
+
+### Calculation Logic
+
+Formula:
+
+Earnings = Investment Amount × 1%
+
+Examples:
+
+Investment: ₹1,00,000
+Earnings: ₹1,000
+
+Investment: ₹10,00,000
+Earnings: ₹10,000
+
+Investment: ₹50,00,000
+Earnings: ₹50,000
+
+---
+
+### Live Calculation
+
+Requirements:
+
+* Update instantly while typing.
+* Format values in Indian currency format.
+* Show commission percentage.
+
+Display:
+
+Investment Amount: ₹10,00,000
+
+Commission Rate: 1%
+
+Estimated Earnings: ₹10,000
+
+---
+
+### UI Design
+
+Use:
+
+* Modern calculator card
+* Clean typography
+* Real-time updates
+* Responsive layout
+
+Highlight:
+
+Estimated Earnings
+
+using brand accent color.
+
+---
+
+# 7. Opportunity Modal Enhancements
+
+For every opportunity modal:
+
+Add tabs:
+
+### Overview
+
+Brand information
+
+### Investment Details
+
+Investment breakdown
+
+### Earnings Calculator
+
+1% commission calculator
+
+### Downloads
+
+Locked until purchase
+
+### Training Videos
+
+Locked until purchase
+
+### Sales Contact
+
+Locked until purchase
+
+---
+
+# 8. User Journey
+
+Expected flow:
+
+View Opportunity
+↓
+See partial details
+↓
+See masked contact number
+↓
+Click Unlock
+↓
+Fill Lead Form
+↓
+Pay ₹499
+↓
+Unlock Contact Number
+↓
+Unlock Downloads
+↓
+Unlock Training Videos
+↓
+Access Premium Opportunity Resources
+
+---
+
+# 9. Analytics Tracking
+
+Track:
+
+* View Opportunity Clicks
+* Lead Form Opens
+* Lead Form Submissions
+* Payment Initiations
+* Payment Success
+* Contact Unlocks
+* Download Clicks
+* Video Views
+* Earnings Calculator Usage
+
+Prepare events for:
+
+* Google Analytics 4
+* Meta Pixel
+* Google Ads Conversion Tracking
+
+---
+
+# 10. QA Checklist
+
+Ensure:
+
+✅ Hero headline updated
+
+✅ ₹500 replaced with ₹499 everywhere
+
+✅ Sales contacts masked
+
+✅ Lead form implemented
+
+✅ Payment flow implemented
+
+✅ Contact unlock works
+
+✅ Downloads section works
+
+✅ Training video preview works
+
+✅ Earnings calculator works
+
+✅ 1% calculation accurate
+
+✅ Mobile responsive
+
+✅ Tablet responsive
+
+✅ Desktop responsive
+
+✅ Analytics events implemented
+
+✅ No broken functionality
+
+✅ No console errors
+
+✅ Production-ready implementation
