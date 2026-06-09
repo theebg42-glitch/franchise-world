@@ -1,8 +1,13 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "8hvLpo8xxjOz7nuFMTC3w"
 uri = "file://artifacts/franchise-world-mobile/assets/images/icon.png"
 type = "image"
 title = "franchise-world-icon"
+
+[[outputs]]
+id = "YFtzRvw6EjSaN3MZkmNgm"
+uri = "file://franchise-world-landing-page.zip"
+type = "unspecified"
+title = "Franchise World Landing Page (HTML)"
