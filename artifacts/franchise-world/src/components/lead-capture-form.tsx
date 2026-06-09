@@ -146,8 +146,8 @@ export function LeadCaptureForm({ open, onClose, brandId, brandName, paymentGate
                   <SelectTrigger className={errors.occupation ? "border-red-400" : ""}>
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
-                  <SelectContent className="z-[300]">
-                    {OCCUPATIONS.map((o) => <SelectItem key={o} value={o}>{o}</SelectItem>)}
+                  <SelectContent className="z-[300] bg-white border border-zinc-300">
+                    {OCCUPATIONS.map((o) => <SelectItem key={o} value={o} className="text-black focus:bg-zinc-100 focus:text-black">{o}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </Field>
@@ -158,8 +158,8 @@ export function LeadCaptureForm({ open, onClose, brandId, brandName, paymentGate
                 <SelectTrigger className={errors.budget ? "border-red-400" : ""}>
                   <SelectValue placeholder="Select budget range" />
                 </SelectTrigger>
-                <SelectContent className="z-[300]">
-                  {BUDGETS.map((b) => <SelectItem key={b} value={b}>{b}</SelectItem>)}
+                <SelectContent className="z-[300] bg-white border border-zinc-300">
+                  {BUDGETS.map((b) => <SelectItem key={b} value={b} className="text-black focus:bg-zinc-100 focus:text-black">{b}</SelectItem>)}
                 </SelectContent>
               </Select>
             </Field>

@@ -1,0 +1,377 @@
+# Franchise World Landing Page – Opportunity Popup Updates
+
+Please implement the following changes across the entire landing page.
+
+---
+
+## 1. Dynamic Unlock CTA Button
+
+Currently every opportunity popup shows:
+
+**Unlock ₹499**
+
+Replace it with a dynamic brand-specific CTA.
+
+### New Format
+
+Examples:
+
+* Unlock Carlton Wellness Center – ₹499
+* Unlock Carlton Wellness Salon – ₹499
+* Unlock Adhira & Appa Coffee – ₹499
+* Unlock AGEON – ₹499
+* Unlock NATUF – ₹499
+* Unlock GoMill – ₹499
+* Unlock ProMill – ₹499
+* Unlock NonStop PhysioCare – ₹499
+* Unlock Daewoo – ₹499
+* Unlock Acer Electric – ₹499
+* Unlock Rental – ₹499
+* Unlock Tarzan Nature Retreat – ₹499
+
+### Requirements
+
+* Automatically pull brand name from popup data.
+* Button text should update dynamically.
+* Keep current button styling.
+* Ensure text wraps properly on mobile devices.
+
+---
+
+## 2. Lead Form Dropdown Visibility Fix
+
+### Current Issue
+
+In the lead capture form:
+
+* Occupation dropdown
+* Investment Budget dropdown
+
+have transparent backgrounds.
+
+As a result:
+
+* Options are difficult to read.
+* Text blends into the modal background.
+
+### Fix Required
+
+Apply:
+
+```css
+background: #ffffff;
+color: #000000;
+border: 1px solid #d1d5db;
+```
+
+For:
+
+* Occupation dropdown
+* Investment Budget dropdown
+* Dropdown option list
+
+### Expected Result
+
+* White background
+* Black text
+* Easy readability
+* Consistent across desktop and mobile
+
+---
+
+## 3. Update View Opportunity Popup Content
+
+Replace the existing content for each opportunity popup with the following content.
+
+---
+
+# Carlton Wellness Center
+
+About Brand
+
+A premium prevention, recovery, and longevity wellness network offering integrated wellness experiences through a structured, protocol-led model.
+
+Investment Details
+
+Investment: ₹2 Cr – ₹5 Cr+
+
+Model: Franchise-Invested, Company-Operated (FICO)
+
+Commission: Up to 1%
+
+Demand: High Growth
+
+| Item                    | Amount  |
+| ----------------------- | ------- |
+| Compact Centre          | ₹2 Cr   |
+| Signature Centre        | ₹2.5 Cr |
+| Flagship Centre         | ₹3 Cr   |
+| Zone 3 Territory Rights | ₹2 Cr   |
+| Zone 2 Territory Rights | ₹3.5 Cr |
+| Zone 1 Territory Rights | ₹5 Cr   |
+
+---
+
+# Carlton Wellness Salon
+
+About Brand
+
+India's first premium wellness-led salon chain combining beauty, wellness, memberships, and standardized salon operations through a scalable city-rights expansion model.
+
+Investment Details
+
+Investment: ₹1 Cr – ₹2 Cr
+
+Model: Cluster Master Franchise
+
+Commission: Up to 1%
+
+Demand: High Growth
+
+| Item               | Amount  |
+| ------------------ | ------- |
+| Zone 3 City Rights | ₹1 Cr   |
+| Zone 2 City Rights | ₹1.5 Cr |
+| Zone 1 City Rights | ₹2 Cr   |
+
+---
+
+# Adhira & Appa Coffee
+
+About Brand
+
+India's culturally rooted coffee café brand combining authentic filter coffee, fusion food, and community-driven experiences.
+
+Investment Details
+
+Investment: ₹35L – ₹1.25 Cr
+
+Model: Growth Capital Opportunity
+
+Commission: Up to 1%
+
+Demand: High Growth
+
+| Item                     | Amount   |
+| ------------------------ | -------- |
+| Growth Capital Entry     | ₹35L+    |
+| Expansion Partner        | ₹75L+    |
+| Strategic Growth Partner | ₹1.25 Cr |
+
+---
+
+# AGEON
+
+About Brand
+
+A smart-ageing and longevity platform focused on prevention, recovery, diagnostics, and personalized wellness journeys.
+
+Investment Details
+
+Investment: ₹35L – ₹1 Cr+
+
+Model: Longevity & Recovery Centre
+
+Commission: Up to 1%
+
+Demand: High Growth
+
+| Item                     | Amount |
+| ------------------------ | ------ |
+| Wellness Centre          | ₹35L+  |
+| Premium Longevity Centre | ₹75L+  |
+| Multi-Centre Expansion   | ₹1 Cr+ |
+
+---
+
+# NATUF
+
+About Brand
+
+A premium Levantine food brand bringing authentic Mediterranean-inspired cuisine to India through scalable multi-format operations.
+
+Investment Details
+
+Investment: ₹35L – ₹5 Cr
+
+Model: Franchise / State Master Franchise
+
+Commission: Up to 1%
+
+Demand: High Growth
+
+| Item                | Amount  |
+| ------------------- | ------- |
+| Café Format         | ₹35L+   |
+| Premium Format      | ₹1 Cr+  |
+| Zone 3 State Rights | ₹2 Cr   |
+| Zone 2 State Rights | ₹3.5 Cr |
+| Zone 1 State Rights | ₹5 Cr   |
+
+---
+
+# GoMill
+
+About Brand
+
+A branded millet-based mobile food concept delivering healthier, hygienic, and convenient food-on-the-go.
+
+Investment Details
+
+Investment: ₹15L – ₹50L
+
+Model: Mobile Food Business
+
+Commission: Up to 1%
+
+Demand: Growing
+
+| Item                 | Amount |
+| -------------------- | ------ |
+| Mobile Cart Model    | ₹15L   |
+| Mobile Truck Model   | ₹30L   |
+| Multi-Unit Expansion | ₹50L   |
+
+---
+
+# ProMill
+
+About Brand
+
+A protein and millet-powered quick-service food brand offering healthier everyday meals for modern consumers.
+
+Investment Details
+
+Investment: ₹20L – ₹75L
+
+Model: Quick Service Restaurant
+
+Commission: Up to 1%
+
+Demand: High Growth
+
+| Item           | Amount |
+| -------------- | ------ |
+| Kiosk Format   | ₹20L   |
+| Standard Store | ₹45L   |
+| Premium Store  | ₹75L   |
+
+---
+
+# NonStop PhysioCare
+
+About Brand
+
+An organized physiotherapy and recovery network focused on rehabilitation, mobility care, and preventive wellness services.
+
+Investment Details
+
+Investment: ₹50L – ₹2 Cr+
+
+Model: Master Franchise / Territory Rights
+
+Commission: Up to 1%
+
+Demand: Very High
+
+| Item                   | Amount |
+| ---------------------- | ------ |
+| Territory Rights       | ₹50L+  |
+| Regional Expansion     | ₹1 Cr+ |
+| Large Territory Rights | ₹2 Cr+ |
+
+---
+
+# Daewoo
+
+About Brand
+
+A globally trusted electronics and appliance brand operating in 160+ countries and expanding rapidly across India.
+
+Investment Details
+
+Investment: ₹25L – ₹1 Cr+
+
+Model: District Program / Business Partner
+
+Commission: Up to 1%
+
+Demand: Validated
+
+| Item                        | Amount |
+| --------------------------- | ------ |
+| District Partner            | ₹25L+  |
+| Regional Partner            | ₹50L+  |
+| Strategic Expansion Partner | ₹1 Cr+ |
+
+---
+
+# Acer Electric
+
+About Brand
+
+An EV-focused retail and dealership opportunity spanning electric mobility, appliances, bicycles, and FOCO expansion models.
+
+Investment Details
+
+Investment: ₹30L – ₹1 Cr
+
+Model: Passive Inventory / FOCO Dealership
+
+Commission: Up to 1%
+
+Demand: Validated
+
+| Item                | Amount |
+| ------------------- | ------ |
+| Appliance Inventory | ₹30L   |
+| Bicycle Model       | ₹30L   |
+| FOCO Tier 1         | ₹1 Cr  |
+| FOCO Tier 2         | ₹80L   |
+
+---
+
+# Tarzan Nature Retreat
+
+About Brand
+
+A hospitality and wellness opportunity focused on eco-tourism, farm stays, retreats, and nature-based experiences.
+
+Investment Details
+
+Investment: ₹2 Cr – ₹5 Cr
+
+Model: Territory Master Franchise
+
+Commission: Up to 1%
+
+Demand: Validated
+
+| Item                    | Amount      |
+| ----------------------- | ----------- |
+| Zone 3 Territory        | ₹2 Cr       |
+| Zone 2 Territory        | ₹3.5 Cr     |
+| Zone 1 Territory        | ₹5 Cr       |
+| Licensing Opportunities | ₹10L – ₹75L |
+
+---
+
+## Final QA
+
+Verify:
+
+✅ Brand-specific Unlock CTA works
+
+✅ Dropdown backgrounds are white
+
+✅ All opportunity content updated
+
+✅ Investment tables render correctly
+
+✅ Mobile responsiveness maintained
+
+✅ No layout shifts
+
+✅ No console errors
+
+✅ Production-ready implementation

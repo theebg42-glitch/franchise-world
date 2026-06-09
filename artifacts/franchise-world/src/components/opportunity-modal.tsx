@@ -47,7 +47,9 @@ export function OpportunityModal({ open, opportunity, isUnlocked, onClose, onReq
 
   const o = opportunity;
 
-  const UnlockGate = ({ label = UNLOCK_CONTACT_CTA }: { label?: string }) => (
+  const unlockCTA = `Unlock ${o.name} – ${UNLOCK_AMOUNT}`;
+
+  const UnlockGate = ({ label }: { label?: string }) => (
     <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-50 p-8 text-center">
       <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-100">
         <Lock className="h-6 w-6 text-zinc-400" />
@@ -56,8 +58,8 @@ export function OpportunityModal({ open, opportunity, isUnlocked, onClose, onReq
       <p className="mt-1 text-sm text-zinc-500">
         Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.
       </p>
-      <Button className="mt-4" onClick={onRequestUnlock}>
-        <Lock className="h-4 w-4" /> {label}
+      <Button className="mt-4 text-wrap h-auto py-2" onClick={onRequestUnlock}>
+        <Lock className="h-4 w-4 shrink-0" /> {label ?? unlockCTA}
       </Button>
     </div>
   );
@@ -121,7 +123,7 @@ export function OpportunityModal({ open, opportunity, isUnlocked, onClose, onReq
                   <div className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-10 text-center">
                     <p className="font-semibold text-zinc-800">Opportunity Details Coming Soon</p>
                     <p className="mt-1 text-sm text-zinc-500">Unlock now to be notified when details go live.</p>
-                    <Button className="mt-5" onClick={onPayNow}><Lock className="h-4 w-4" /> Unlock for {UNLOCK_AMOUNT}</Button>
+                    <Button className="mt-5 text-wrap h-auto py-2" onClick={onPayNow}><Lock className="h-4 w-4 shrink-0" /> {unlockCTA}</Button>
                   </div>
                 ) : (
                   <>
@@ -147,13 +149,13 @@ export function OpportunityModal({ open, opportunity, isUnlocked, onClose, onReq
                       </div>
                     </div>
                     {!isUnlocked && (
-                      <div className="flex items-center justify-between gap-4 rounded-xl border border-red-100 bg-red-50/50 p-4">
+                      <div className="flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                           <p className="font-bold text-sm">Unlock Full Access</p>
                           <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
                         </div>
-                        <Button className="shrink-0" onClick={onRequestUnlock}>
-                          <Lock className="h-4 w-4" /> Unlock {UNLOCK_AMOUNT}
+                        <Button className="shrink-0 text-wrap h-auto py-2" onClick={onRequestUnlock}>
+                          <Lock className="h-4 w-4 shrink-0" /> {unlockCTA}
                         </Button>
                       </div>
                     )}
