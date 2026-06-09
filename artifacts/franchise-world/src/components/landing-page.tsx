@@ -334,13 +334,13 @@ export function LandingPage() {
 
         {/* ── POST-FAQ CTA ── */}
         <section className="py-14 pb-28 md:pb-14 text-center px-4">
-          <p className="text-sm font-semibold uppercase tracking-widest text-brand-red mb-3">Start Today</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-red mb-3">Your Next Move</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-2 leading-tight">
-            Turn Your Network Into A<br className="hidden sm:block" />{" "}
-            <span className="text-brand-red">Franchise Referral Business</span>
+            Still Have Doubts?<br className="hidden sm:block" />{" "}
+            <span className="text-brand-red">Your First Commission Will Answer Them.</span>
           </h2>
           <p className="mt-3 text-zinc-500 text-base max-w-md mx-auto mb-7">
-            Join India's consultant platform. Refer investors, we close the deal — you earn up to 1% commission.
+            Thousands of consultants started with the same questions. One referral later — they never looked back.
           </p>
           <a href={opportunitiesHref}>
             <Button size="lg" className="px-10 text-base">
