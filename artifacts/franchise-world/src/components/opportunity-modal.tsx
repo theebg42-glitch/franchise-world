@@ -64,6 +64,21 @@ export function OpportunityModal({ open, opportunity, isUnlocked, onClose, onReq
     </div>
   );
 
+  const UnlockBanner = () => {
+    if (isUnlocked) return null;
+    return (
+      <div className="mt-5 flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="font-bold text-sm">Unlock Full Access</p>
+          <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
+        </div>
+        <Button className="shrink-0 text-wrap h-auto py-2" onClick={onRequestUnlock}>
+          <Lock className="h-4 w-4 shrink-0" /> {unlockCTA}
+        </Button>
+      </div>
+    );
+  };
+
   const TabButton = ({ tab }: { tab: typeof TABS[number] }) => (
     <button
       onClick={() => setActiveTab(tab.id)}
@@ -131,12 +146,6 @@ export function OpportunityModal({ open, opportunity, isUnlocked, onClose, onReq
                     <div className="grid gap-3 sm:grid-cols-2">
                       <div className="rounded-xl border border-zinc-200 p-4">
                         <p className="flex items-center gap-2 font-semibold text-sm mb-2">
-                          <ClipboardCheck className="h-4 w-4 text-brand-red" /> About Brand
-                        </p>
-                        <p className="text-sm text-zinc-600 leading-relaxed">{o.about}</p>
-                      </div>
-                      <div className="rounded-xl border border-zinc-200 p-4">
-                        <p className="flex items-center gap-2 font-semibold text-sm mb-2">
                           <ShieldCheck className="h-4 w-4 text-brand-red" /> Highlights
                         </p>
                         <div className="space-y-1.5">
@@ -147,18 +156,14 @@ export function OpportunityModal({ open, opportunity, isUnlocked, onClose, onReq
                           ))}
                         </div>
                       </div>
-                    </div>
-                    {!isUnlocked && (
-                      <div className="flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
-                        <div>
-                          <p className="font-bold text-sm">Unlock Full Access</p>
-                          <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
-                        </div>
-                        <Button className="shrink-0 text-wrap h-auto py-2" onClick={onRequestUnlock}>
-                          <Lock className="h-4 w-4 shrink-0" /> {unlockCTA}
-                        </Button>
+                      <div className="rounded-xl border border-zinc-200 p-4">
+                        <p className="flex items-center gap-2 font-semibold text-sm mb-2">
+                          <ClipboardCheck className="h-4 w-4 text-brand-red" /> Why This Brand
+                        </p>
+                        <p className="text-sm text-zinc-600 leading-relaxed">{o.about}</p>
                       </div>
-                    )}
+                    </div>
+                    <UnlockBanner />
                   </>
                 )}
               </div>
@@ -204,6 +209,7 @@ export function OpportunityModal({ open, opportunity, isUnlocked, onClose, onReq
                 {o.areaRequired && (
                   <p className="text-sm text-zinc-500">Area required: <span className="font-medium text-zinc-800">{o.areaRequired}</span></p>
                 )}
+                <UnlockBanner />
               </div>
             )}
 
@@ -214,6 +220,7 @@ export function OpportunityModal({ open, opportunity, isUnlocked, onClose, onReq
                   See how much you can earn by referring investors to <strong>{o.name}</strong>.
                 </p>
                 <EarningsCalculator compact />
+                <UnlockBanner />
               </div>
             )}
 
