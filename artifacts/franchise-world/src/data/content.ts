@@ -1,5 +1,5 @@
 export const faqItems = [
-  "Why do I pay ₹500?",
+  "Why do I pay ₹499?",
   "What do I receive after payment?",
   "How are commissions calculated?",
   "Do I need franchise experience?",
@@ -13,8 +13,8 @@ export const faqItems = [
 export const faqAnswers: Record<string, string> = {
   "How does the platform work?":
     "You select an opportunity, pay ₹500 for access, receive all investor-facing materials, and then start introducing qualified investors while our team supports closure.",
-  "Why do I pay ₹500?":
-    "The ₹500 access fee activates your consultant workspace, unlocks brand documents and qualified support resources, and filters serious consultant participation.",
+  "Why do I pay ₹499?":
+    "The ₹499 access fee activates your consultant workspace, unlocks brand documents and qualified support resources, and filters serious consultant participation.",
   "What do I receive after payment?":
     "You get dashboard access, brand presentations, investment details, revenue models, investor qualification guides, and a dedicated support contact.",
   "Can I unlock multiple opportunities?":
