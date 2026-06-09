@@ -13,7 +13,6 @@ type FormData = {
   email: string;
   city: string;
   occupation: string;
-  budget: string;
 };
 
 type FormErrors = Partial<Record<keyof FormData, string>>;
@@ -25,7 +24,6 @@ function validate(data: FormData): FormErrors {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.email = "Enter a valid email address";
   if (!data.city.trim()) errors.city = "City is required";
   if (!data.occupation) errors.occupation = "Occupation is required";
-  if (!data.budget) errors.budget = "Investment budget is required";
   return errors;
 }
 
@@ -33,11 +31,6 @@ const OCCUPATIONS = [
   "Business Consultant", "Real Estate Advisor", "Insurance Advisor",
   "Financial Advisor", "HR Professional", "Sales Professional",
   "Entrepreneur", "Investor", "Other"
-];
-
-const BUDGETS = [
-  "Below ₹10L", "₹10L – ₹25L", "₹25L – ₹50L",
-  "₹50L – ₹1 Cr", "₹1 Cr – ₹5 Cr", "Above ₹5 Cr"
 ];
 
 type Props = {
@@ -50,7 +43,7 @@ type Props = {
 
 export function LeadCaptureForm({ open, onClose, brandId, brandName, paymentGatewayBase }: Props) {
   const [form, setForm] = useState<FormData>({
-    fullName: "", mobile: "", email: "", city: "", occupation: "", budget: ""
+    fullName: "", mobile: "", email: "", city: "", occupation: ""
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
@@ -84,7 +77,6 @@ export function LeadCaptureForm({ open, onClose, brandId, brandName, paymentGate
       email: form.email,
       city: form.city,
       occupation: form.occupation,
-      budget: form.budget,
     });
 
     trackEvent(AnalyticsEvents.PAYMENT_INITIATE, { brandId, amount: PAYMENT_AMOUNT_NUM });
@@ -152,17 +144,6 @@ export function LeadCaptureForm({ open, onClose, brandId, brandName, paymentGate
                 </Select>
               </Field>
             </div>
-
-            <Field label="Investment Budget *" id="budget" error={errors.budget}>
-              <Select value={form.budget} onValueChange={set("budget")}>
-                <SelectTrigger className={errors.budget ? "border-red-400" : ""}>
-                  <SelectValue placeholder="Select budget range" />
-                </SelectTrigger>
-                <SelectContent className="z-[300] bg-white border border-zinc-300">
-                  {BUDGETS.map((b) => <SelectItem key={b} value={b} className="text-black focus:bg-zinc-100 focus:text-black">{b}</SelectItem>)}
-                </SelectContent>
-              </Select>
-            </Field>
 
             <div className="rounded-xl border border-zinc-100 bg-zinc-50 p-4 text-sm text-zinc-600">
               After submitting, you'll be redirected to our secure payment page to complete the{" "}

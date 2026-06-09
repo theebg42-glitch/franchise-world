@@ -263,7 +263,7 @@ export function LandingPage() {
 
         {/* ── TESTIMONIALS ── */}
         <section id="testimonials" className="py-10">
-          <h2 className="text-center text-2xl font-bold sm:text-3xl">Consultant Success Stories</h2>
+          <h2 className="text-center text-2xl font-bold sm:text-3xl">Our Consultant Success Stories</h2>
           <p className="mt-2 text-center text-zinc-500">Real people. Real commissions.</p>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {[
