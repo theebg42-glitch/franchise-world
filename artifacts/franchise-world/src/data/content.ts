@@ -3,7 +3,11 @@ export const faqItems = [
   "What do I receive after payment?",
   "How are commissions calculated?",
   "Do I need franchise experience?",
-  "Who closes the deal?"
+  "Who closes the deal?",
+  "Can I unlock multiple opportunities?",
+  "How do I receive commission payments?",
+  "Can I work part-time?",
+  "How do I contact support?"
 ];
 
 export const faqAnswers: Record<string, string> = {
