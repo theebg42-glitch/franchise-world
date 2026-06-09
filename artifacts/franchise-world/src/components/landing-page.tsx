@@ -242,11 +242,11 @@ export function LandingPage() {
                     <span className="font-mono font-medium">{item.salesContact ?? "987XX XXXXX"}</span>
                   </div>
                   <div className="mt-4 flex flex-col gap-2">
-                    <Button className="w-full" size="sm" onClick={() => openOpportunity(item)}>
+                    <Button className="w-full" size="sm" variant="outline" onClick={() => openOpportunity(item)}>
                       View Opportunity
                     </Button>
                     {!isUnlocked(item.id) && (
-                      <Button className="w-full h-auto py-2 leading-tight text-center whitespace-normal" size="sm" variant="outline"
+                      <Button className="w-full h-auto py-2 leading-tight text-center whitespace-normal" size="sm"
                         onClick={() => { setSelectedOpportunity(item); openLeadForm(); }}>
                         Unlock {item.name} – {UNLOCK_AMOUNT}
                       </Button>
