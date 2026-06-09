@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Franchise World Consultant Platform"
+version = "1.0.0"
+id = "artifacts/franchise-world"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21334
+
+[services.development]
+run = "pnpm --filter @workspace/franchise-world run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/franchise-world", "run", "build" ]
+publicDir = "artifacts/franchise-world/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21334"
+BASE_PATH = "/"
