@@ -248,7 +248,7 @@ export function LandingPage() {
                     {!isUnlocked(item.id) && (
                       <Button className="w-full" size="sm" variant="outline"
                         onClick={() => { setSelectedOpportunity(item); openLeadForm(); }}>
-                        Unlock – {UNLOCK_AMOUNT}
+                        Unlock {item.name} – {UNLOCK_AMOUNT}
                       </Button>
                     )}
                   </div>
