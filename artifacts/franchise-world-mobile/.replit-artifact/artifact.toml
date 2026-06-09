@@ -1,0 +1,27 @@
+kind = "mobile"
+previewPath = "/mobile/"
+title = "Franchise World Mobile"
+version = "1.0.0"
+id = "artifacts/franchise-world-mobile"
+router = "expo-domain"
+
+[[integratedSkills]]
+name = "expo"
+version = "1.0.0"
+
+[[services]]
+ensurePreviewReachable = "/status"
+name = "expo"
+paths = [ "/mobile/" ]
+localPort = 18146
+
+[services.development]
+run = "pnpm --filter @workspace/franchise-world-mobile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/franchise-world-mobile", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/franchise-world-mobile", "run", "serve" ]
+
+[services.env]
+PORT = "18146"
+BASE_PATH = "/mobile/"

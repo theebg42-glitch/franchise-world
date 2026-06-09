@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Franchise World",
+    "slug": "franchise-world-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "franchise-world-mobile",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F5F6F7"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.replit.franchiseworldmobile"
+    },
+    "android": {
+      "package": "com.replit.franchiseworldmobile"
+    },
+    "web": {
+      "favicon": "./assets/images/icon.png"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "origin": "https://replit.com/"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
