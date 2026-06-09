@@ -331,6 +331,16 @@ export function LandingPage() {
             </CardContent>
           </Card>
         </SectionBlock>
+
+        {/* ── POST-FAQ CTA ── */}
+        <section className="py-12 text-center">
+          <p className="text-lg font-semibold text-zinc-700 mb-4">Ready to start earning? Join India's consultant platform today.</p>
+          <a href={opportunitiesHref}>
+            <Button size="lg" className="px-10 text-base">
+              {UNLOCK_CTA} <ChevronRight className="h-5 w-5 ml-1" />
+            </Button>
+          </a>
+        </section>
       </main>
 
       {/* ── FOOTER ── */}
