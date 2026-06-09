@@ -246,7 +246,7 @@ export function LandingPage() {
                       View Opportunity
                     </Button>
                     {!isUnlocked(item.id) && (
-                      <Button className="w-full" size="sm" variant="outline"
+                      <Button className="w-full h-auto py-2 leading-tight text-center whitespace-normal" size="sm" variant="outline"
                         onClick={() => { setSelectedOpportunity(item); openLeadForm(); }}>
                         Unlock {item.name} – {UNLOCK_AMOUNT}
                       </Button>
@@ -333,13 +333,25 @@ export function LandingPage() {
         </SectionBlock>
 
         {/* ── POST-FAQ CTA ── */}
-        <section className="py-12 text-center">
-          <p className="text-lg font-semibold text-zinc-700 mb-4">Ready to start earning? Join India's consultant platform today.</p>
+        <section className="py-14 pb-28 md:pb-14 text-center px-4">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-red mb-3">Start Today</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-2 leading-tight">
+            Turn Your Network Into A<br className="hidden sm:block" />{" "}
+            <span className="text-brand-red">Franchise Referral Business</span>
+          </h2>
+          <p className="mt-3 text-zinc-500 text-base max-w-md mx-auto mb-7">
+            Join India's consultant platform. Refer investors, we close the deal — you earn up to 1% commission.
+          </p>
           <a href={opportunitiesHref}>
             <Button size="lg" className="px-10 text-base">
               {UNLOCK_CTA} <ChevronRight className="h-5 w-5 ml-1" />
             </Button>
           </a>
+          <p className="mt-4 flex items-center justify-center gap-4 text-xs text-zinc-400">
+            <span>✓ Secure Payment</span>
+            <span>✓ Instant Access</span>
+            <span>✓ Dedicated Support</span>
+          </p>
         </section>
       </main>
 
