@@ -1,0 +1,196 @@
+You are a Senior Frontend Developer, UI/UX Designer, and QA Engineer with 20+ years of experience.
+
+Your task is to improve my landing page while preserving the existing design system, responsiveness, performance, SEO, and functionality.
+
+DO NOT redesign the page from scratch.
+DO NOT modify any working functionality.
+Only make the requested improvements and ensure everything looks premium and production-ready.
+
+========================================================
+1. HERO SECTION
+========================================================
+
+The current hero image looks like it was simply pasted onto the page.
+
+Improve it so it naturally blends with the hero section and premium branding.
+
+Requirements:
+
+• The image should feel like part of the design instead of a floating asset.
+• Improve alignment, spacing, sizing, shadows, border radius, overlays, and background treatment if required.
+• Match the existing color palette.
+• Maintain visual hierarchy.
+• Ensure desktop, tablet, and mobile all look perfect.
+• Keep loading performance optimized.
+• Do not stretch or distort the image.
+• Add subtle modern effects only if they improve the premium feel (soft shadow, gradient overlay, glass effect, etc.).
+• The hero section should look like a professionally designed landing page for a premium business opportunity.
+
+========================================================
+2. OPPORTUNITY SECTION
+========================================================
+
+Locate the section titled:
+
+"Featured Franchise Opportunity"
+
+Replace it with:
+
+Heading:
+
+Our Prestigious Brand
+
+Below the heading display the OFFICIAL Daewoo logo.
+
+IMPORTANT:
+• Use the real Daewoo logo.
+• Do NOT write "Daewoo" as plain text.
+• Keep the logo crisp and proportional.
+• Optimize it for web.
+• Center it properly.
+
+Below the logo add:
+
+"Refer the Daewoo franchise opportunity and earn a 1% referral commission of up to 2 Lakhs on every successful business closure."
+
+Maintain the existing styling.
+
+========================================================
+3. WHAT YOU GET FOR ₹500 SECTION
+========================================================
+
+Locate the card that currently contains:
+
+Earn Up to 1% Commission
+
+Receive attractive payouts on every successful closure.
+
+Replace it with:
+
+Title:
+
+Dedicated CRM Access
+
+Description:
+
+Track every referral, monitor lead progress, manage commissions, and receive real-time updates through your dedicated CRM dashboard.
+
+Use an appropriate CRM/dashboard icon.
+
+Maintain identical card styling.
+
+========================================================
+4. CTA BUTTON
+========================================================
+
+Replace
+
+Unlock Opportunity Access
+
+with
+
+Unlock Daewoo Access – ₹500 Only
+
+Do NOT change button colors, animations, hover effects, or click functionality.
+
+========================================================
+5. UI CONSISTENCY
+========================================================
+
+Review the entire landing page for consistency.
+
+Ensure:
+
+• Equal spacing throughout
+• Consistent typography
+• Proper section padding
+• Consistent button styles
+• Icon alignment
+• Image alignment
+• Card heights are equal
+• Mobile responsiveness
+• Proper visual hierarchy
+• Professional whitespace
+• Premium appearance
+
+Fix any small inconsistencies you notice without changing the existing branding.
+
+========================================================
+6. PERFORMANCE
+========================================================
+
+Ensure:
+
+• Images are optimized
+• No layout shift
+• Lazy loading where appropriate
+• Maintain Lighthouse performance
+• No unnecessary CSS
+• No duplicate code
+
+========================================================
+7. RESPONSIVE DESIGN
+========================================================
+
+Verify:
+
+Desktop (1920px)
+Laptop (1440px)
+Tablet (768px)
+Mobile (390px)
+
+Every section should render perfectly.
+
+========================================================
+8. SEO
+========================================================
+
+Do not remove:
+
+• Meta tags
+• Schema
+• Open Graph
+• Analytics
+• Existing SEO implementation
+
+========================================================
+9. ACCESSIBILITY
+========================================================
+
+Verify:
+
+• Proper image alt text
+• Button accessibility
+• Keyboard navigation
+• Sufficient color contrast
+• Semantic HTML
+
+========================================================
+10. FINAL QA CHECKLIST
+========================================================
+
+Before considering the task complete, perform a full QA review like a senior engineer.
+
+Confirm that:
+
+✅ No console errors
+✅ No broken links
+✅ No missing assets
+✅ No responsive issues
+✅ No overlapping elements
+✅ No CLS/layout shift
+✅ Proper alignment everywhere
+✅ Consistent fonts
+✅ Equal spacing
+✅ Hero image blends naturally with the design
+✅ Daewoo logo displays correctly
+✅ CRM content updated
+✅ CTA text updated
+✅ Existing forms still work
+✅ Existing tracking scripts remain intact
+✅ Existing animations still work
+✅ Existing functionality is unchanged
+✅ Page loads successfully
+✅ Production-ready quality
+
+Finally, provide a summary of every change made and list any additional UI/UX improvements you implemented during QA.

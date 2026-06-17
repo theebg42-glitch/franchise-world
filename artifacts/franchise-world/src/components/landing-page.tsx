@@ -18,6 +18,7 @@ import {
   BookOpen,
   UserCheck,
   BadgeDollarSign,
+  LayoutDashboard,
   MessageCircle,
   BadgeCheck,
   CheckCircle2,
@@ -72,7 +73,7 @@ const whatYouGet = [
   { icon: Video, title: "Brand Videos", desc: "Access official brand presentations and promotional videos." },
   { icon: BookOpen, title: "Training Support", desc: "Learn how to identify and qualify potential investors." },
   { icon: UserCheck, title: "Dedicated Relationship Manager", desc: "Get support from Franchise World's expert team." },
-  { icon: BadgeDollarSign, title: "Earn Up to 1% Commission", desc: "Receive attractive payouts on every successful closure." },
+  { icon: LayoutDashboard, title: "Dedicated CRM Access", desc: "Track every referral, monitor lead progress, manage commissions, and receive real-time updates through your dedicated CRM dashboard." },
 ];
 
 const testimonials = [
@@ -228,16 +229,21 @@ export function LandingPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex items-center justify-center"
           >
-            <div className="relative w-full max-w-lg">
+            <div className="relative w-full max-w-md overflow-hidden rounded-2xl shadow-2xl">
+              {/* Background glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-red/10 via-transparent to-zinc-900/20 z-10 rounded-2xl pointer-events-none" />
               <img
                 src={bomanIraniImage}
                 alt="Boman Irani — Brand Ambassador, Franchise World"
-                className="h-auto w-full rounded-2xl object-cover shadow-lg"
+                className="h-auto w-full object-cover object-top rounded-2xl"
+                loading="eager"
               />
+              {/* Subtle bottom gradient for badge legibility */}
+              <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-black/50 to-transparent z-10 rounded-b-2xl pointer-events-none" />
               {/* Glassmorphism badge */}
-              <div className="absolute bottom-4 right-4 flex items-center gap-2 rounded-xl border border-white/40 bg-white/80 px-3 py-2 shadow-lg backdrop-blur-md max-w-[85%]">
+              <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center gap-2.5 rounded-xl border border-white/30 bg-white/85 px-3 py-2.5 shadow-xl backdrop-blur-md">
                 <CheckCircle className="h-4 w-4 shrink-0 text-brand-red" />
-                <p className="text-xs font-semibold leading-tight text-zinc-800">
+                <p className="text-xs font-semibold leading-tight text-zinc-900">
                   Supported by Boman Irani, Bollywood Actor &amp; Brand Ambassador
                 </p>
               </div>
@@ -267,7 +273,7 @@ export function LandingPage() {
         </SectionBlock>
 
         {/* ── OPPORTUNITIES — Daewoo Only (tabbed, mirrors modal) ── */}
-        <SectionBlock id="opportunities" title="Featured Franchise Opportunity">
+        <SectionBlock id="opportunities" title="Our Prestigious Brand">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -278,26 +284,32 @@ export function LandingPage() {
               <CardContent className="p-0">
 
                 {/* ── Header ── */}
-                <div className="flex items-start gap-4 border-b border-zinc-100 p-5 sm:p-6">
-                  <div className="flex h-16 w-24 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-white p-2">
-                    <img src={daewooLogo} alt="Daewoo" className="h-full w-full object-contain" />
+                <div className="flex flex-col items-center gap-4 border-b border-zinc-100 px-6 py-8 text-center bg-gradient-to-b from-zinc-50 to-white">
+                  {/* Logo */}
+                  <div className="flex h-20 w-48 items-center justify-center rounded-2xl border border-zinc-200 bg-white px-4 py-3 shadow-sm">
+                    <img src={daewooLogo} alt="Daewoo — Official Brand Logo" className="h-full w-full object-contain" loading="lazy" />
                   </div>
-                  <div className="min-w-0 flex-1">
+                  {/* Description */}
+                  <p className="max-w-xl text-sm leading-relaxed text-zinc-600 sm:text-base">
+                    Refer the Daewoo franchise opportunity and earn a <span className="font-semibold text-brand-red">1% referral commission</span> of up to <span className="font-semibold text-brand-red">2 Lakhs</span> on every successful business closure.
+                  </p>
+                  {/* Badges */}
+                  <div className="flex flex-wrap items-center justify-center gap-2">
                     <span className="inline-flex items-center rounded-full bg-red-50 px-2.5 py-0.5 text-xs font-semibold text-brand-red">
                       {daewoo.category}
                     </span>
-                    <p className="mt-1 text-lg font-bold leading-tight sm:text-xl">{daewoo.industry}</p>
-                    <p className="text-sm text-zinc-500">{daewoo.industry} · {daewoo.investment}</p>
-                  </div>
-                  {isUnlocked(daewoo.id) ? (
-                    <span className="shrink-0 flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
-                      <BadgeCheck className="h-3.5 w-3.5" /> Unlocked
-                    </span>
-                  ) : (
-                    <span className="shrink-0 inline-flex items-center rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                    <span className="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
                       {daewoo.demandTag}
                     </span>
-                  )}
+                    <span className="inline-flex items-center rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-semibold text-zinc-600">
+                      {daewoo.investment}
+                    </span>
+                    {isUnlocked(daewoo.id) && (
+                      <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
+                        <BadgeCheck className="h-3.5 w-3.5" /> Unlocked
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* ── Tabs ── */}
