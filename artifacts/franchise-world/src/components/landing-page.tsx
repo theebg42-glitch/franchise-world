@@ -73,7 +73,7 @@ const whatYouGet = [
   { icon: Video, title: "Brand Videos", desc: "Access official brand presentations and promotional videos." },
   { icon: BookOpen, title: "Training Support", desc: "Learn how to identify and qualify potential investors." },
   { icon: UserCheck, title: "Dedicated Relationship Manager", desc: "Get support from Franchise World's expert team." },
-  { icon: LayoutDashboard, title: "Dedicated CRM Access", desc: "Track every referral, monitor lead progress, manage commissions, and receive real-time updates through your dedicated CRM dashboard." },
+  { icon: LayoutDashboard, title: "Dedicated CRM Access", desc: "Track referrals, monitor leads, and manage your commissions in real time." },
 ];
 
 const testimonials = [
