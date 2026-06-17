@@ -19,6 +19,16 @@ import {
   UserCheck,
   BadgeDollarSign,
   MessageCircle,
+  BadgeCheck,
+  CheckCircle2,
+  CircleDollarSign,
+  ClipboardCheck,
+  Download,
+  FileText,
+  Lock,
+  Percent,
+  Sparkles,
+  Phone,
 } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { ConsultantAvatar } from "@/components/consultant-avatar";
@@ -37,6 +47,7 @@ import { SectionBlock } from "@/sections/section-block";
 import { RUPEE, UNLOCK_AMOUNT, UNLOCK_CTA, UNLOCK_CTA_SHORT } from "@/lib/constants";
 import { trackEvent, AnalyticsEvents } from "@/lib/analytics";
 import bomanIraniImage from "@/assets/boman-irani-hero.jpeg";
+import daewooLogo from "@/assets/brand-daewoo-logo.jpeg";
 import hariKrishnaShettyImage from "@/assets/consultants-hari-krishna-shetty.png";
 import nehaSharmaImage from "@/assets/consultants-neha-sharma.png";
 import navathKumarImage from "@/assets/consultants-navath-kumar.png";
@@ -107,6 +118,7 @@ export function LandingPage() {
   const [flowState, setFlowState] = useState<FlowState>("none");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [daewooTab, setDaewooTab] = useState<"overview" | "investment" | "calculator" | "downloads" | "training" | "contact">("overview");
   const activeSection = useScrollSection(navItems.map((i) => i.id));
   const { isUnlocked } = useUnlock();
 
@@ -254,7 +266,7 @@ export function LandingPage() {
           </div>
         </SectionBlock>
 
-        {/* ── OPPORTUNITIES — Daewoo Only ── */}
+        {/* ── OPPORTUNITIES — Daewoo Only (tabbed, mirrors modal) ── */}
         <SectionBlock id="opportunities" title="Featured Franchise Opportunity">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -264,90 +276,330 @@ export function LandingPage() {
           >
             <Card className="overflow-hidden border-2 border-brand-red/20 shadow-premium">
               <CardContent className="p-0">
-                {/* Header band */}
-                <div className="bg-brand-gradient px-6 py-5 text-white">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <div>
-                      <span className="inline-block rounded-full bg-white/20 px-3 py-0.5 text-xs font-semibold uppercase tracking-wide">
-                        {daewoo.demandTag}
-                      </span>
-                      <h3 className="mt-2 text-2xl font-bold">{daewoo.name}</h3>
-                      <p className="text-sm text-white/80">{daewoo.industry}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs text-white/70">Investment Range</p>
-                      <p className="text-xl font-bold">{daewoo.investment}</p>
-                      <p className="text-xs text-white/70 mt-0.5">Commission: {daewoo.commissionPotential}</p>
-                    </div>
+
+                {/* ── Header ── */}
+                <div className="flex items-start gap-4 border-b border-zinc-100 p-5 sm:p-6">
+                  <div className="flex h-16 w-24 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-white p-2">
+                    <img src={daewooLogo} alt="Daewoo" className="h-full w-full object-contain" />
                   </div>
+                  <div className="min-w-0 flex-1">
+                    <span className="inline-flex items-center rounded-full bg-red-50 px-2.5 py-0.5 text-xs font-semibold text-brand-red">
+                      {daewoo.category}
+                    </span>
+                    <p className="mt-1 text-lg font-bold leading-tight sm:text-xl">{daewoo.industry}</p>
+                    <p className="text-sm text-zinc-500">{daewoo.industry} · {daewoo.investment}</p>
+                  </div>
+                  {isUnlocked(daewoo.id) ? (
+                    <span className="shrink-0 flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
+                      <BadgeCheck className="h-3.5 w-3.5" /> Unlocked
+                    </span>
+                  ) : (
+                    <span className="shrink-0 inline-flex items-center rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                      {daewoo.demandTag}
+                    </span>
+                  )}
                 </div>
 
-                <div className="p-6">
-                  {/* About */}
-                  <p className="text-zinc-600 leading-relaxed">{daewoo.about}</p>
-
-                  <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {[
-                      { label: "Why Preferred", value: daewoo.whyPreferred },
-                      { label: "Market Demand", value: daewoo.marketDemand },
-                      { label: "Support Provided", value: daewoo.supportProvided },
-                      { label: "Business Model", value: daewoo.businessModel },
-                      { label: "Consultant Benefits", value: daewoo.consultantBenefits },
-                      { label: "Commission Potential", value: daewoo.commissionPotential },
-                    ].map((item) => (
-                      <div key={item.label} className="rounded-lg bg-zinc-50 p-3">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-brand-red mb-1">{item.label}</p>
-                        <p className="text-sm text-zinc-700">{item.value}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Investment tiers */}
-                  {daewoo.investmentDetails && (
-                    <div className="mt-6">
-                      <p className="text-sm font-semibold text-zinc-700 mb-3">Investment Tiers</p>
-                      <div className="flex flex-wrap gap-2">
-                        {daewoo.investmentDetails.map((d) => (
-                          <div key={d.label} className="rounded-lg border border-zinc-200 bg-white px-3 py-2">
-                            <p className="text-xs text-zinc-500">{d.label}</p>
-                            <p className="font-bold text-brand-red">{d.value}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Highlights */}
-                  {daewoo.opportunityHighlights && (
-                    <div className="mt-5">
-                      <p className="text-sm font-semibold text-zinc-700 mb-2">Opportunity Highlights</p>
-                      <ul className="grid gap-1.5 sm:grid-cols-2">
-                        {daewoo.opportunityHighlights.map((h) => (
-                          <li key={h} className="flex items-center gap-2 text-sm text-zinc-600">
-                            <CheckCircle className="h-4 w-4 shrink-0 text-emerald-500" />
-                            {h}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {/* CTA */}
-                  <div className="mt-8">
-                    <Button
-                      size="lg"
-                      className="w-full sm:w-auto text-base px-8"
-                      onClick={() => redirectToPayment(daewoo)}
+                {/* ── Tabs ── */}
+                <div className="flex overflow-x-auto border-b border-zinc-100 bg-white px-5 sm:px-6 scrollbar-hide">
+                  {(["overview", "investment", "calculator", "downloads", "training", "contact"] as const).map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setDaewooTab(tab)}
+                      className={`shrink-0 whitespace-nowrap border-b-2 px-3 py-2.5 text-sm font-medium capitalize transition ${
+                        daewooTab === tab
+                          ? "border-brand-red text-brand-red"
+                          : "border-transparent text-zinc-500 hover:text-zinc-800"
+                      }`}
                     >
-                      Unlock Daewoo Opportunity for ₹500 <ArrowRight className="h-5 w-5 ml-1" />
-                    </Button>
-                    {isUnlocked(daewoo.id) && (
-                      <span className="ml-4 inline-block rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700">
-                        ✓ Already Unlocked
-                      </span>
-                    )}
-                  </div>
+                      {tab === "overview" ? "Overview" :
+                       tab === "investment" ? "Investment Details" :
+                       tab === "calculator" ? "Earnings Calculator" :
+                       tab === "downloads" ? "Downloads" :
+                       tab === "training" ? "Training Videos" :
+                       "Sales Contact"}
+                    </button>
+                  ))}
                 </div>
+
+                {/* ── Tab Content ── */}
+                <div className="p-5 sm:p-6">
+                  <motion.div
+                    key={daewooTab}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.18 }}
+                  >
+
+                    {/* Overview */}
+                    {daewooTab === "overview" && (
+                      <div className="space-y-5">
+                        <p className="text-sm leading-relaxed text-zinc-600">{daewoo.description}</p>
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          <div className="rounded-xl border border-zinc-200 p-4">
+                            <p className="flex items-center gap-2 font-semibold text-sm mb-2">
+                              <ShieldCheck className="h-4 w-4 text-brand-red" /> Highlights
+                            </p>
+                            <div className="space-y-1.5">
+                              {(daewoo.opportunityHighlights ?? []).map((h) => (
+                                <div key={h} className="flex items-start gap-2 text-sm text-zinc-700">
+                                  <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-red" />{h}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="rounded-xl border border-zinc-200 p-4">
+                            <p className="flex items-center gap-2 font-semibold text-sm mb-2">
+                              <ClipboardCheck className="h-4 w-4 text-brand-red" /> Why This Brand
+                            </p>
+                            <p className="text-sm text-zinc-600 leading-relaxed">{daewoo.about}</p>
+                          </div>
+                        </div>
+                        {!isUnlocked(daewoo.id) && (
+                          <div className="flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                              <p className="font-bold text-sm">Unlock Full Access</p>
+                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
+                            </div>
+                            <Button className="shrink-0 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo – {UNLOCK_AMOUNT}
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Investment Details */}
+                    {daewooTab === "investment" && (
+                      <div className="space-y-4">
+                        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                          {[
+                            { label: "Investment", value: daewoo.investment, icon: CircleDollarSign },
+                            { label: "Model", value: daewoo.modelType ?? daewoo.businessModel, icon: Sparkles },
+                            { label: "Commission", value: daewoo.commission ?? daewoo.commissionPotential, icon: Percent },
+                            { label: "Demand", value: daewoo.demandTag ?? "Validated", icon: BadgeCheck }
+                          ].map((item) => (
+                            <div key={item.label} className="rounded-xl border border-red-100 bg-red-50/40 p-4 text-center">
+                              <item.icon className="h-5 w-5 text-brand-red mx-auto" />
+                              <p className="mt-2 text-xs font-semibold text-zinc-700">{item.label}</p>
+                              <p className="mt-0.5 text-xs text-zinc-600">{item.value || "—"}</p>
+                            </div>
+                          ))}
+                        </div>
+                        {(daewoo.investmentDetails ?? []).length > 0 && (
+                          <div className="rounded-xl border border-zinc-200 overflow-hidden">
+                            <table className="w-full text-sm">
+                              <thead>
+                                <tr className="bg-zinc-50 border-b border-zinc-200">
+                                  <th className="px-4 py-2.5 text-left font-semibold text-zinc-700">Item</th>
+                                  <th className="px-4 py-2.5 text-right font-semibold text-zinc-700">Amount</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {(daewoo.investmentDetails ?? []).map((row, i) => (
+                                  <tr key={row.label} className={i % 2 === 0 ? "bg-white" : "bg-zinc-50/50"}>
+                                    <td className="px-4 py-2.5 text-zinc-700">{row.label}</td>
+                                    <td className="px-4 py-2.5 text-right font-semibold text-brand-red">{row.value}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+                        {!isUnlocked(daewoo.id) && (
+                          <div className="flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                              <p className="font-bold text-sm">Unlock Full Access</p>
+                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
+                            </div>
+                            <Button className="shrink-0 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo – {UNLOCK_AMOUNT}
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Earnings Calculator */}
+                    {daewooTab === "calculator" && (
+                      <div>
+                        <p className="mb-4 text-sm text-zinc-600">
+                          See how much you can earn by referring investors to <strong>{daewoo.name}</strong>.
+                        </p>
+                        <EarningsCalculator compact />
+                        {!isUnlocked(daewoo.id) && (
+                          <div className="mt-4 flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                              <p className="font-bold text-sm">Unlock Full Access</p>
+                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
+                            </div>
+                            <Button className="shrink-0 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo – {UNLOCK_AMOUNT}
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Downloads */}
+                    {daewooTab === "downloads" && (
+                      isUnlocked(daewoo.id) ? (
+                        <div className="space-y-3">
+                          <p className="text-sm text-zinc-600 mb-4">All brand resources are available for download below.</p>
+                          {[
+                            { name: "Brand Brochure", ext: "PDF" },
+                            { name: "Investment Deck", ext: "PDF" },
+                            { name: "Business Model Overview", ext: "PDF" },
+                            { name: "Earnings Structure", ext: "PDF" },
+                            { name: "Opportunity Presentation", ext: "PPTX" },
+                          ].map((doc) => (
+                            <div key={doc.name} className="flex items-center justify-between rounded-xl border border-zinc-200 bg-white p-4 hover:border-brand-red/30 transition">
+                              <div className="flex items-center gap-3">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-50">
+                                  <FileText className="h-5 w-5 text-brand-red" />
+                                </div>
+                                <div>
+                                  <p className="font-medium text-sm">{doc.name}</p>
+                                  <p className="text-xs text-zinc-400">{doc.ext} Document</p>
+                                </div>
+                              </div>
+                              <Button variant="outline" size="sm">
+                                <Download className="h-4 w-4" /> Download
+                              </Button>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-50 p-8 text-center">
+                          <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-100">
+                            <Lock className="h-6 w-6 text-zinc-400" />
+                          </div>
+                          <p className="font-semibold text-zinc-800">Unlock this content for {UNLOCK_AMOUNT}</p>
+                          <p className="mt-1 text-sm text-zinc-500">Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.</p>
+                          <Button className="mt-4 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                            <Lock className="h-4 w-4 shrink-0" /> Unlock Downloads – {UNLOCK_AMOUNT}
+                          </Button>
+                        </div>
+                      )
+                    )}
+
+                    {/* Training Videos */}
+                    {daewooTab === "training" && (
+                      isUnlocked(daewoo.id) ? (
+                        <div className="space-y-4">
+                          <p className="text-sm text-zinc-600 mb-2">Training content to help you refer confidently.</p>
+                          {[
+                            { title: "Introduction to the Opportunity", duration: "30 sec preview" },
+                            { title: "How Consultants Earn Commission", duration: "Coming soon" },
+                            { title: "Referral Process Walkthrough", duration: "Coming soon" },
+                            { title: "What You Get After Unlocking", duration: "Coming soon" },
+                          ].map((video, i) => (
+                            <div key={video.title}
+                              className={`relative overflow-hidden rounded-xl border ${i === 0 ? "border-brand-red/30 bg-red-50/30" : "border-zinc-200 bg-zinc-50"}`}>
+                              <div className="flex items-center gap-4 p-4">
+                                <button
+                                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-red text-white shadow hover:bg-brand-red/90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                                  disabled={i !== 0}
+                                >
+                                  <Play className="h-5 w-5 fill-white" />
+                                </button>
+                                <div>
+                                  <p className="font-medium text-sm">{video.title}</p>
+                                  <p className="text-xs text-zinc-500">{video.duration}</p>
+                                </div>
+                                {i === 0 && (
+                                  <span className="ml-auto shrink-0 rounded-full bg-brand-red px-2.5 py-0.5 text-xs font-semibold text-white">Preview</span>
+                                )}
+                              </div>
+                              {i === 0 && (
+                                <div className="mx-4 mb-4 flex aspect-video items-center justify-center rounded-xl bg-zinc-900">
+                                  <div className="text-center text-white">
+                                    <Play className="mx-auto h-10 w-10 fill-white opacity-80" />
+                                    <p className="mt-2 text-sm font-medium opacity-70">Training Preview — {daewoo.name}</p>
+                                    <p className="text-xs opacity-50">30-second overview</p>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-50 p-8 text-center">
+                          <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-100">
+                            <Lock className="h-6 w-6 text-zinc-400" />
+                          </div>
+                          <p className="font-semibold text-zinc-800">Unlock this content for {UNLOCK_AMOUNT}</p>
+                          <p className="mt-1 text-sm text-zinc-500">Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.</p>
+                          <Button className="mt-4 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                            <Lock className="h-4 w-4 shrink-0" /> Unlock Training Videos – {UNLOCK_AMOUNT}
+                          </Button>
+                        </div>
+                      )
+                    )}
+
+                    {/* Sales Contact */}
+                    {daewooTab === "contact" && (
+                      isUnlocked(daewoo.id) ? (
+                        <div className="space-y-4">
+                          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
+                            <BadgeCheck className="mx-auto h-8 w-8 text-emerald-600" />
+                            <p className="mt-2 font-semibold text-emerald-800">Sales Contact Unlocked</p>
+                            <p className="mt-3 text-xs text-zinc-500 uppercase tracking-wide">Direct Number</p>
+                            <div className="mt-1 flex items-center justify-center gap-2">
+                              <Phone className="h-5 w-5 text-emerald-700" />
+                              <a href={`tel:${daewoo.salesContactFull ?? "9999999999"}`}
+                                className="text-2xl font-bold tracking-widest text-emerald-800 hover:text-emerald-600">
+                                {daewoo.salesContactFull ?? "Contact Support"}
+                              </a>
+                            </div>
+                            <p className="mt-3 text-xs text-zinc-500">Mention you're a Franchise World consultant when calling.</p>
+                          </div>
+                          <div className="rounded-xl border border-zinc-200 bg-white p-4 text-sm text-zinc-600">
+                            <p className="font-semibold mb-1">Next Steps</p>
+                            <ul className="space-y-1 list-disc list-inside text-zinc-500">
+                              <li>Introduce qualified investors from your network</li>
+                              <li>Schedule a meeting with the brand's team</li>
+                              <li>Our team will assist with presentations and closure</li>
+                              <li>Earn up to 1% commission on successful deals</li>
+                            </ul>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="space-y-4">
+                          <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-6 text-center">
+                            <p className="text-xs text-zinc-500 uppercase tracking-wide mb-2">Sales Contact</p>
+                            <p className="text-3xl font-mono font-bold tracking-widest text-zinc-800 select-none filter blur-[3px]">
+                              {daewoo.salesContact ?? "921XX XXXXX"}
+                            </p>
+                            <p className="mt-2 text-sm text-zinc-500">Unlock to reveal the full number</p>
+                          </div>
+                          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-50 p-8 text-center">
+                            <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-100">
+                              <Lock className="h-6 w-6 text-zinc-400" />
+                            </div>
+                            <p className="font-semibold text-zinc-800">Unlock this content for {UNLOCK_AMOUNT}</p>
+                            <p className="mt-1 text-sm text-zinc-500">Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.</p>
+                            <Button className="mt-4 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo – {UNLOCK_AMOUNT}
+                            </Button>
+                          </div>
+                        </div>
+                      )
+                    )}
+
+                  </motion.div>
+                </div>
+
+                {/* Bottom CTA */}
+                <div className="border-t border-zinc-100 px-5 py-4 sm:px-6 flex flex-wrap items-center justify-between gap-3 bg-zinc-50/50">
+                  <p className="text-sm text-zinc-500">
+                    One-time unlock fee · Instant access · Dedicated support
+                  </p>
+                  <Button size="lg" className="h-auto py-2.5 text-wrap" onClick={() => redirectToPayment(daewoo)}>
+                    Unlock Daewoo Opportunity for ₹500 <ArrowRight className="h-4 w-4 ml-1 shrink-0" />
+                  </Button>
+                </div>
+
               </CardContent>
             </Card>
           </motion.div>
