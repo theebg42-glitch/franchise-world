@@ -362,7 +362,7 @@ export function LandingPage() {
                               <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
                             </div>
                             <Button className="shrink-0 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
-                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo – {UNLOCK_AMOUNT}
+                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
                             </Button>
                           </div>
                         )}
@@ -413,7 +413,7 @@ export function LandingPage() {
                               <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
                             </div>
                             <Button className="shrink-0 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
-                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo – {UNLOCK_AMOUNT}
+                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
                             </Button>
                           </div>
                         )}
@@ -434,7 +434,7 @@ export function LandingPage() {
                               <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
                             </div>
                             <Button className="shrink-0 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
-                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo – {UNLOCK_AMOUNT}
+                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
                             </Button>
                           </div>
                         )}
@@ -580,7 +580,7 @@ export function LandingPage() {
                             <p className="font-semibold text-zinc-800">Unlock this content for {UNLOCK_AMOUNT}</p>
                             <p className="mt-1 text-sm text-zinc-500">Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.</p>
                             <Button className="mt-4 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
-                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo – {UNLOCK_AMOUNT}
+                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
                             </Button>
                           </div>
                         </div>
@@ -596,7 +596,7 @@ export function LandingPage() {
                     One-time unlock fee · Instant access · Dedicated support
                   </p>
                   <Button size="lg" className="h-auto py-2.5 text-wrap" onClick={() => redirectToPayment(daewoo)}>
-                    Unlock Daewoo Opportunity for ₹500 <ArrowRight className="h-4 w-4 ml-1 shrink-0" />
+                    Unlock Daewoo Access – ₹500/- Only <ArrowRight className="h-4 w-4 ml-1 shrink-0" />
                   </Button>
                 </div>
 
