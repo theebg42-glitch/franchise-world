@@ -127,6 +127,12 @@ export function LandingPage() {
   const backToModal = () => setFlowState("modal");
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
+  const openLeadForm = (brand: Opportunity) => {
+    setSelectedOpportunity(brand);
+    setFlowState("lead-form");
+    trackEvent(AnalyticsEvents.LEAD_FORM_OPEN, { brandId: brand.id });
+  };
+
   const redirectToPayment = (brand?: Opportunity) => {
     const b = brand ?? selectedOpportunity ?? daewoo;
     const params = new URLSearchParams({
@@ -373,7 +379,7 @@ export function LandingPage() {
                               <p className="font-bold text-sm">Unlock Full Access</p>
                               <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
                             </div>
-                            <Button className="shrink-0 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                            <Button className="shrink-0 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
                               <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
                             </Button>
                           </div>
@@ -424,7 +430,7 @@ export function LandingPage() {
                               <p className="font-bold text-sm">Unlock Full Access</p>
                               <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
                             </div>
-                            <Button className="shrink-0 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                            <Button className="shrink-0 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
                               <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
                             </Button>
                           </div>
@@ -445,7 +451,7 @@ export function LandingPage() {
                               <p className="font-bold text-sm">Unlock Full Access</p>
                               <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
                             </div>
-                            <Button className="shrink-0 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                            <Button className="shrink-0 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
                               <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
                             </Button>
                           </div>
@@ -488,7 +494,7 @@ export function LandingPage() {
                           </div>
                           <p className="font-semibold text-zinc-800">Unlock this content for {UNLOCK_AMOUNT}</p>
                           <p className="mt-1 text-sm text-zinc-500">Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.</p>
-                          <Button className="mt-4 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                          <Button className="mt-4 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
                             <Lock className="h-4 w-4 shrink-0" /> Unlock Downloads – {UNLOCK_AMOUNT}
                           </Button>
                         </div>
@@ -542,7 +548,7 @@ export function LandingPage() {
                           </div>
                           <p className="font-semibold text-zinc-800">Unlock this content for {UNLOCK_AMOUNT}</p>
                           <p className="mt-1 text-sm text-zinc-500">Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.</p>
-                          <Button className="mt-4 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                          <Button className="mt-4 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
                             <Lock className="h-4 w-4 shrink-0" /> Unlock Training Videos – {UNLOCK_AMOUNT}
                           </Button>
                         </div>
@@ -591,7 +597,7 @@ export function LandingPage() {
                             </div>
                             <p className="font-semibold text-zinc-800">Unlock this content for {UNLOCK_AMOUNT}</p>
                             <p className="mt-1 text-sm text-zinc-500">Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.</p>
-                            <Button className="mt-4 h-auto py-2" onClick={() => redirectToPayment(daewoo)}>
+                            <Button className="mt-4 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
                               <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
                             </Button>
                           </div>
@@ -607,7 +613,7 @@ export function LandingPage() {
                   <p className="text-sm text-zinc-500">
                     One-time unlock fee · Instant access · Dedicated support
                   </p>
-                  <Button size="lg" className="h-auto py-2.5 text-wrap" onClick={() => redirectToPayment(daewoo)}>
+                  <Button size="lg" className="h-auto py-2.5 text-wrap" onClick={() => openLeadForm(daewoo)}>
                     Unlock Daewoo Access – ₹500/- Only <ArrowRight className="h-4 w-4 ml-1 shrink-0" />
                   </Button>
                 </div>
@@ -853,7 +859,7 @@ export function LandingPage() {
       {selectedOpportunity && (
         <LeadCaptureForm
           open={flowState === "lead-form"}
-          onClose={backToModal}
+          onClose={flowState === "lead-form" && selectedOpportunity?.id === daewoo.id ? closeAll : backToModal}
           brandId={selectedOpportunity.id}
           brandName={selectedOpportunity.name}
           paymentGatewayBase={paymentGatewayBase}
