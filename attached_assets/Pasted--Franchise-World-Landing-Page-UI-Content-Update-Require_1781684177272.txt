@@ -1,0 +1,223 @@
+# Franchise World Landing Page – UI/Content Update Requirements
+
+You are a Senior UI/UX Designer, Front-End Developer, and CRO (Conversion Rate Optimization) Expert with 20+ years of experience.
+
+Update the existing Franchise World landing page while preserving the current branding, layout consistency, responsiveness, animations, and overall design quality.
+
+---
+
+## 1. Hero Section Updates
+
+### Description Update
+
+Replace the existing hero description with the following:
+
+**"India has sellers. India has buyers. The bridge is missing — and you can be it. Refer investors, our experts close the deal, you earn a 1% success-fee share upto 5 lakhs.
+
+### Hero Image Update
+
+* Replace the current hero image on the right side with the new image provided.
+* Ensure the image is responsive across desktop, tablet, and mobile.
+
+### Image Tagline Overlay
+
+Add a premium badge/tagline overlay on the image:
+
+**Supported by Boman Irani, Bollywood Actor & Brand Ambassador**
+
+Design Requirements:
+
+* Premium glassmorphism style badge
+* White background with slight transparency
+* Subtle shadow
+* Small verified/check icon
+* Position at bottom-right of image
+* Mobile responsive
+
+---
+
+## 2. Opportunity Section Updates
+
+### Remove Existing Brands
+
+Remove all currently displayed brands.
+
+### Display Only One Brand
+
+Show only:
+
+# Daewoo
+
+Use the complete content currently available inside the **"View Opportunity"** popup/card and display it directly on the landing page.
+
+### CTA Button
+
+Button Text:
+
+**Unlock Daewoo Opportunity for ₹500**
+
+Button should scroll to payment section.
+
+---
+
+## 3. Add New Section
+
+Insert a new section immediately after the Opportunity Section.
+
+# What You Get for ₹500
+
+Display as 6 premium feature cards.
+
+### Card 1
+
+📊 Investor Pitch Decks
+
+Access professionally designed franchise investment presentations.
+
+### Card 2
+
+📞 Sales Scripts
+
+Ready-to-use scripts to confidently pitch opportunities.
+
+### Card 3
+
+🎥 Brand Videos
+
+Access official brand presentations and promotional videos.
+
+### Card 4
+
+📚 Training Support
+
+Learn how to identify and qualify potential investors.
+
+### Card 5
+
+👨‍💼 Dedicated Relationship Manager
+
+Get support from Franchise World's expert team.
+
+### Card 6
+
+💰 Earn Up to 1% Commission
+
+Receive attractive payouts on every successful closure.
+
+Design:
+
+* 3 columns desktop
+* 2 columns tablet
+* 1 column mobile
+* Hover effects
+* Premium card styling
+
+---
+
+## 4. Success Stories Section Enhancement
+
+Current:
+There are 3 success stories with images.
+
+Update:
+
+* Keep all existing success stories.
+* Keep current images.
+
+Add:
+
+### Video Play Button Overlay
+
+Each image should have:
+
+▶ Play Video Button
+
+When clicked:
+
+Open a modal popup video player.
+
+Video modal should:
+
+* Dark background overlay
+* Close button
+* Mobile responsive
+* Smooth animation
+
+Add placeholder video URLs for now.
+
+Structure:
+
+Story 1 → Video URL Placeholder
+
+Story 2 → Video URL Placeholder
+
+Story 3 → Video URL Placeholder
+
+---
+
+## 5. Pricing Update
+
+Across the entire website:
+
+Replace every occurrence of:
+
+₹499
+
+with
+
+₹500
+
+Update:
+
+* Buttons
+* Pricing cards
+* FAQs
+* Popups
+* Payment section
+* Any hidden references
+
+Perform a global search and replace.
+
+---
+
+## 6. WhatsApp Floating Chat Button
+
+Add a floating WhatsApp button.
+
+Position:
+
+* Bottom Right
+* Above footer
+* Visible on all pages
+
+Features:
+
+* Pulse animation
+* Hover effect
+* Mobile responsive
+* Opens WhatsApp in new tab
+
+WhatsApp Message:
+
+"Hi Franchise World Team, I would like to know more about the Daewoo Consultant Opportunity."
+
+Use placeholder WhatsApp number for now:
+
++91XXXXXXXXXX
+
+---
+
+## Additional Requirements
+
+* Maintain current Franchise World branding.
+* Keep all existing animations.
+* Preserve SEO structure.
+* Preserve responsiveness.
+* Maintain fast page speed.
+* Use modern premium styling.
+* Ensure accessibility compliance.
+* Test for desktop, tablet, and mobile views.
+* Do not remove existing navigation, footer, testimonials, or payment functionality.
+* Ensure all new sections match the current visual design language.
+
+Deliver production-ready code updates only.
