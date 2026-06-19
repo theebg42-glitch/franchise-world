@@ -244,10 +244,10 @@ export function LandingPage() {
         <SectionBlock id="how-it-works" title="Start Earning In 4 Steps">
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
             {[
-              { n: "01", title: "Choose Opportunity", desc: "Pick a franchise that fits your network." },
-              { n: "02", title: `Pay ${UNLOCK_AMOUNT}`, desc: "Unlock your consultant workspace instantly." },
-              { n: "03", title: "Refer Investors", desc: "Introduce qualified investors from your circle." },
-              { n: "04", title: "We Close", desc: "Our team handles meetings, pitches & closure." }
+              { n: "01", title: `Pay ${UNLOCK_AMOUNT}`, desc: "Unlock your consultant workspace instantly." },
+              { n: "02", title: "You Connect", desc: "Engage interested investors." },
+              { n: "03", title: "We Support", desc: "Expert guidance at every step." },
+              { n: "04", title: "Together We Close", desc: "Turn opportunities into your earnings." }
             ].map((step) => (
               <Card key={step.n} className="relative overflow-hidden">
                 <span className="absolute right-4 top-4 text-2xl font-black text-zinc-100">{step.n}</span>
