@@ -71,7 +71,7 @@ const whatYouGet = [
 const testimonials = [
   {
     quote: "Referred an investor and earned my first commission within 45 days. The team handled everything.",
-    opportunity: "Carlton Salon",
+    opportunity: "Daewoo",
     name: "Hari Krishna Shetty",
     location: "Pune, MH",
     profession: "Business Consultant",
@@ -81,7 +81,7 @@ const testimonials = [
   },
   {
     quote: "Simple, professional and very effective. The team handles everything so we can focus on our network.",
-    opportunity: "Acer Electric",
+    opportunity: "Daewoo",
     name: "Neha Sharma",
     location: "Noida, UP",
     profession: "Real Estate Advisor",
@@ -91,7 +91,7 @@ const testimonials = [
   },
   {
     quote: "I love the transparency. Franchise World supports consultants with presentations and closures end-to-end.",
-    opportunity: "Carlton Wellness",
+    opportunity: "Daewoo",
     name: "Navath Kumar",
     location: "Ahmedabad, GJ",
     profession: "Insurance Advisor",
