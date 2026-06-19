@@ -10,26 +10,19 @@ import {
   Quote,
   X,
   Zap,
-  Play,
   CheckCircle,
   BarChart2,
-  PhoneCall,
   Video,
   BookOpen,
   UserCheck,
-  BadgeDollarSign,
   LayoutDashboard,
-  MessageCircle,
   BadgeCheck,
   CheckCircle2,
   CircleDollarSign,
   ClipboardCheck,
-  Download,
-  FileText,
   Lock,
   Percent,
   Sparkles,
-  Phone,
 } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { ConsultantAvatar } from "@/components/consultant-avatar";
@@ -47,7 +40,7 @@ import { useUnlock } from "@/hooks/use-unlock";
 import { SectionBlock } from "@/sections/section-block";
 import { RUPEE, UNLOCK_AMOUNT, UNLOCK_CTA, UNLOCK_CTA_SHORT } from "@/lib/constants";
 import { trackEvent, AnalyticsEvents } from "@/lib/analytics";
-import bomanIraniImage from "@/assets/boman-irani-hero.jpeg";
+import brandAmbassadorImage from "@/assets/fw-brand-ambassador.png";
 import daewooLogo from "@/assets/brand-daewoo-logo.jpeg";
 import hariKrishnaShettyImage from "@/assets/consultants-hari-krishna-shetty.png";
 import nehaSharmaImage from "@/assets/consultants-neha-sharma.png";
@@ -69,7 +62,6 @@ const daewoo = opportunities.find((o) => o.id === "daewoo")!;
 
 const whatYouGet = [
   { icon: BarChart2, title: "Investor Pitch Decks", desc: "Access professionally designed franchise investment presentations." },
-  { icon: PhoneCall, title: "Sales Scripts", desc: "Ready-to-use scripts to confidently pitch opportunities." },
   { icon: Video, title: "Brand Videos", desc: "Access official brand presentations and promotional videos." },
   { icon: BookOpen, title: "Training Support", desc: "Learn how to identify and qualify potential investors." },
   { icon: UserCheck, title: "Dedicated Relationship Manager", desc: "Get support from Franchise World's expert team." },
@@ -86,7 +78,6 @@ const testimonials = [
     earned: `${RUPEE}6,00,000`,
     image: hariKrishnaShettyImage,
     imageFile: "hari.png",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   },
   {
     quote: "Simple, professional and very effective. The team handles everything so we can focus on our network.",
@@ -97,7 +88,6 @@ const testimonials = [
     earned: `${RUPEE}4,00,000`,
     image: nehaSharmaImage,
     imageFile: "neha.png",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   },
   {
     quote: "I love the transparency. Franchise World supports consultants with presentations and closures end-to-end.",
@@ -108,7 +98,6 @@ const testimonials = [
     earned: `${RUPEE}8,00,000`,
     image: navathKumarImage,
     imageFile: "navath.png",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   },
 ];
 
@@ -118,8 +107,7 @@ export function LandingPage() {
   const [selectedOpportunity, setSelectedOpportunity] = useState<Opportunity | null>(null);
   const [flowState, setFlowState] = useState<FlowState>("none");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
-  const [daewooTab, setDaewooTab] = useState<"overview" | "investment" | "calculator" | "downloads" | "training" | "contact">("overview");
+  const [daewooTab, setDaewooTab] = useState<"overview" | "investment" | "calculator">("overview");
   const activeSection = useScrollSection(navItems.map((i) => i.id));
   const { isUnlocked } = useUnlock();
 
@@ -208,7 +196,7 @@ export function LandingPage() {
             <Badge>India's Trusted Franchise Consultant Platform</Badge>
             <h1 className="mt-4 text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl">
               <span className="block">Turn Your Network Into A</span>
-              <span className="mt-1 block font-extrabold text-brand-red">Franchise Referral Business</span>
+              <span className="mt-1 block font-extrabold text-brand-red">Powerful Earning Opportunity</span>
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-zinc-600">
               India has sellers. India has buyers. The bridge is missing — and you can be it. Refer investors, our experts close the deal, you earn a 1% success-fee share upto 5 lakhs.
@@ -216,11 +204,6 @@ export function LandingPage() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href={opportunitiesHref} className="w-full sm:w-auto">
                 <Button size="lg" className="w-full sm:w-auto">{UNLOCK_CTA}</Button>
-              </a>
-              <a href="#opportunities" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  Browse Opportunities <ArrowRight className="h-4 w-4" />
-                </Button>
               </a>
             </div>
             <div className="mt-5 flex flex-wrap gap-4 text-sm text-zinc-500">
@@ -239,8 +222,8 @@ export function LandingPage() {
               {/* Background glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-brand-red/10 via-transparent to-zinc-900/20 z-10 rounded-2xl pointer-events-none" />
               <img
-                src={bomanIraniImage}
-                alt="Boman Irani — Brand Ambassador, Franchise World"
+                src={brandAmbassadorImage}
+                alt="Brand Ambassador — Franchise World"
                 className="h-auto w-full object-cover object-top rounded-2xl"
                 loading="eager"
               />
@@ -250,7 +233,7 @@ export function LandingPage() {
               <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center gap-2.5 rounded-xl border border-white/30 bg-white/85 px-3 py-2.5 shadow-xl backdrop-blur-md">
                 <CheckCircle className="h-4 w-4 shrink-0 text-brand-red" />
                 <p className="text-xs font-semibold leading-tight text-zinc-900">
-                  Supported by Boman Irani, Bollywood Actor &amp; Brand Ambassador
+                  Franchise World — Brand Ambassador
                 </p>
               </div>
             </div>
@@ -320,7 +303,7 @@ export function LandingPage() {
 
                 {/* ── Tabs ── */}
                 <div className="flex overflow-x-auto border-b border-zinc-100 bg-white px-5 sm:px-6 scrollbar-hide">
-                  {(["overview", "investment", "calculator", "downloads", "training", "contact"] as const).map((tab) => (
+                  {(["overview", "investment", "calculator"] as const).map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setDaewooTab(tab)}
@@ -332,10 +315,7 @@ export function LandingPage() {
                     >
                       {tab === "overview" ? "Overview" :
                        tab === "investment" ? "Investment Details" :
-                       tab === "calculator" ? "Earnings Calculator" :
-                       tab === "downloads" ? "Downloads" :
-                       tab === "training" ? "Training Videos" :
-                       "Sales Contact"}
+                       "Earnings Calculator"}
                     </button>
                   ))}
                 </div>
@@ -377,7 +357,7 @@ export function LandingPage() {
                           <div className="flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
                             <div>
                               <p className="font-bold text-sm">Unlock Full Access</p>
-                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
+                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} · One-time fee · Instant access</p>
                             </div>
                             <Button className="shrink-0 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
                               <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
@@ -428,7 +408,7 @@ export function LandingPage() {
                           <div className="flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
                             <div>
                               <p className="font-bold text-sm">Unlock Full Access</p>
-                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
+                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} · One-time fee · Instant access</p>
                             </div>
                             <Button className="shrink-0 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
                               <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
@@ -449,7 +429,7 @@ export function LandingPage() {
                           <div className="mt-4 flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
                             <div>
                               <p className="font-bold text-sm">Unlock Full Access</p>
-                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} to get contact, downloads & training.</p>
+                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} · One-time fee · Instant access</p>
                             </div>
                             <Button className="shrink-0 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
                               <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
@@ -459,151 +439,6 @@ export function LandingPage() {
                       </div>
                     )}
 
-                    {/* Downloads */}
-                    {daewooTab === "downloads" && (
-                      isUnlocked(daewoo.id) ? (
-                        <div className="space-y-3">
-                          <p className="text-sm text-zinc-600 mb-4">All brand resources are available for download below.</p>
-                          {[
-                            { name: "Brand Brochure", ext: "PDF" },
-                            { name: "Investment Deck", ext: "PDF" },
-                            { name: "Business Model Overview", ext: "PDF" },
-                            { name: "Earnings Structure", ext: "PDF" },
-                            { name: "Opportunity Presentation", ext: "PPTX" },
-                          ].map((doc) => (
-                            <div key={doc.name} className="flex items-center justify-between rounded-xl border border-zinc-200 bg-white p-4 hover:border-brand-red/30 transition">
-                              <div className="flex items-center gap-3">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-50">
-                                  <FileText className="h-5 w-5 text-brand-red" />
-                                </div>
-                                <div>
-                                  <p className="font-medium text-sm">{doc.name}</p>
-                                  <p className="text-xs text-zinc-400">{doc.ext} Document</p>
-                                </div>
-                              </div>
-                              <Button variant="outline" size="sm">
-                                <Download className="h-4 w-4" /> Download
-                              </Button>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-50 p-8 text-center">
-                          <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-100">
-                            <Lock className="h-6 w-6 text-zinc-400" />
-                          </div>
-                          <p className="font-semibold text-zinc-800">Unlock this content for {UNLOCK_AMOUNT}</p>
-                          <p className="mt-1 text-sm text-zinc-500">Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.</p>
-                          <Button className="mt-4 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
-                            <Lock className="h-4 w-4 shrink-0" /> Unlock Downloads – {UNLOCK_AMOUNT}
-                          </Button>
-                        </div>
-                      )
-                    )}
-
-                    {/* Training Videos */}
-                    {daewooTab === "training" && (
-                      isUnlocked(daewoo.id) ? (
-                        <div className="space-y-4">
-                          <p className="text-sm text-zinc-600 mb-2">Training content to help you refer confidently.</p>
-                          {[
-                            { title: "Introduction to the Opportunity", duration: "30 sec preview" },
-                            { title: "How Consultants Earn Commission", duration: "Coming soon" },
-                            { title: "Referral Process Walkthrough", duration: "Coming soon" },
-                            { title: "What You Get After Unlocking", duration: "Coming soon" },
-                          ].map((video, i) => (
-                            <div key={video.title}
-                              className={`relative overflow-hidden rounded-xl border ${i === 0 ? "border-brand-red/30 bg-red-50/30" : "border-zinc-200 bg-zinc-50"}`}>
-                              <div className="flex items-center gap-4 p-4">
-                                <button
-                                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-red text-white shadow hover:bg-brand-red/90 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                                  disabled={i !== 0}
-                                >
-                                  <Play className="h-5 w-5 fill-white" />
-                                </button>
-                                <div>
-                                  <p className="font-medium text-sm">{video.title}</p>
-                                  <p className="text-xs text-zinc-500">{video.duration}</p>
-                                </div>
-                                {i === 0 && (
-                                  <span className="ml-auto shrink-0 rounded-full bg-brand-red px-2.5 py-0.5 text-xs font-semibold text-white">Preview</span>
-                                )}
-                              </div>
-                              {i === 0 && (
-                                <div className="mx-4 mb-4 flex aspect-video items-center justify-center rounded-xl bg-zinc-900">
-                                  <div className="text-center text-white">
-                                    <Play className="mx-auto h-10 w-10 fill-white opacity-80" />
-                                    <p className="mt-2 text-sm font-medium opacity-70">Training Preview — {daewoo.name}</p>
-                                    <p className="text-xs opacity-50">30-second overview</p>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-50 p-8 text-center">
-                          <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-100">
-                            <Lock className="h-6 w-6 text-zinc-400" />
-                          </div>
-                          <p className="font-semibold text-zinc-800">Unlock this content for {UNLOCK_AMOUNT}</p>
-                          <p className="mt-1 text-sm text-zinc-500">Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.</p>
-                          <Button className="mt-4 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
-                            <Lock className="h-4 w-4 shrink-0" /> Unlock Training Videos – {UNLOCK_AMOUNT}
-                          </Button>
-                        </div>
-                      )
-                    )}
-
-                    {/* Sales Contact */}
-                    {daewooTab === "contact" && (
-                      isUnlocked(daewoo.id) ? (
-                        <div className="space-y-4">
-                          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
-                            <BadgeCheck className="mx-auto h-8 w-8 text-emerald-600" />
-                            <p className="mt-2 font-semibold text-emerald-800">Sales Contact Unlocked</p>
-                            <p className="mt-3 text-xs text-zinc-500 uppercase tracking-wide">Direct Number</p>
-                            <div className="mt-1 flex items-center justify-center gap-2">
-                              <Phone className="h-5 w-5 text-emerald-700" />
-                              <a href={`tel:${daewoo.salesContactFull ?? "9999999999"}`}
-                                className="text-2xl font-bold tracking-widest text-emerald-800 hover:text-emerald-600">
-                                {daewoo.salesContactFull ?? "Contact Support"}
-                              </a>
-                            </div>
-                            <p className="mt-3 text-xs text-zinc-500">Mention you're a Franchise World consultant when calling.</p>
-                          </div>
-                          <div className="rounded-xl border border-zinc-200 bg-white p-4 text-sm text-zinc-600">
-                            <p className="font-semibold mb-1">Next Steps</p>
-                            <ul className="space-y-1 list-disc list-inside text-zinc-500">
-                              <li>Introduce qualified investors from your network</li>
-                              <li>Schedule a meeting with the brand's team</li>
-                              <li>Our team will assist with presentations and closure</li>
-                              <li>Earn up to 1% commission on successful deals</li>
-                            </ul>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="space-y-4">
-                          <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-6 text-center">
-                            <p className="text-xs text-zinc-500 uppercase tracking-wide mb-2">Sales Contact</p>
-                            <p className="text-3xl font-mono font-bold tracking-widest text-zinc-800 select-none filter blur-[3px]">
-                              {daewoo.salesContact ?? "921XX XXXXX"}
-                            </p>
-                            <p className="mt-2 text-sm text-zinc-500">Unlock to reveal the full number</p>
-                          </div>
-                          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-50 p-8 text-center">
-                            <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-100">
-                              <Lock className="h-6 w-6 text-zinc-400" />
-                            </div>
-                            <p className="font-semibold text-zinc-800">Unlock this content for {UNLOCK_AMOUNT}</p>
-                            <p className="mt-1 text-sm text-zinc-500">Fill a quick form then pay {UNLOCK_AMOUNT} to get instant access.</p>
-                            <Button className="mt-4 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
-                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
-                            </Button>
-                          </div>
-                        </div>
-                      )
-                    )}
 
                   </motion.div>
                 </div>
@@ -660,20 +495,8 @@ export function LandingPage() {
               <Card key={t.name} className="overflow-hidden">
                 <CardContent className="p-5">
                   <div className="flex gap-4 items-start">
-                    {/* Avatar with play button overlay */}
-                    <div
-                      className="relative shrink-0 cursor-pointer group"
-                      onClick={() => setActiveVideo(t.videoUrl)}
-                      role="button"
-                      aria-label={`Play ${t.name}'s story`}
-                    >
+                    <div className="shrink-0">
                       <ConsultantAvatar src={t.image} name={t.name} imageFile={t.imageFile} />
-                      <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">
-                        <Play className="h-5 w-5 fill-white text-white" />
-                      </div>
-                      <div className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-brand-red shadow-md">
-                        <Play className="h-3 w-3 fill-white text-white" />
-                      </div>
                     </div>
                     <div>
                       <Quote className="h-4 w-4 text-brand-red mb-1" />
@@ -694,12 +517,6 @@ export function LandingPage() {
                       <p className="text-xs text-zinc-500">{t.opportunity}</p>
                     </div>
                   </div>
-                  <button
-                    onClick={() => setActiveVideo(t.videoUrl)}
-                    className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-zinc-200 py-2 text-xs font-semibold text-zinc-600 transition hover:border-brand-red hover:text-brand-red"
-                  >
-                    <Play className="h-3.5 w-3.5" /> Watch Story
-                  </button>
                 </CardContent>
               </Card>
             ))}
@@ -783,63 +600,7 @@ export function LandingPage() {
         </a>
       </div>
 
-      {/* ── WHATSAPP FLOATING BUTTON ── */}
-      <a
-        href="https://wa.me/91XXXXXXXXXX?text=Hi%20Franchise%20World%20Team%2C%20I%20would%20like%20to%20know%20more%20about%20the%20Daewoo%20Consultant%20Opportunity."
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp"
-        className="fixed bottom-20 right-4 z-50 md:bottom-6 group"
-      >
-        <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform duration-200 hover:scale-110">
-          <MessageCircle className="h-7 w-7 fill-white" />
-          {/* Pulse rings */}
-          <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-30 animate-ping" />
-        </div>
-        <span className="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-zinc-900 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
-          Chat on WhatsApp
-        </span>
-      </a>
 
-      {/* ── VIDEO MODAL ── */}
-      <AnimatePresence>
-        {activeVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
-            onClick={() => setActiveVideo(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.92 }}
-              transition={{ duration: 0.2 }}
-              className="relative w-full max-w-3xl rounded-2xl overflow-hidden bg-black shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setActiveVideo(null)}
-                className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black transition"
-                aria-label="Close video"
-              >
-                <X className="h-4 w-4" />
-              </button>
-              <div className="aspect-video w-full">
-                <iframe
-                  src={activeVideo}
-                  title="Consultant Story"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="h-full w-full"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* ── OPPORTUNITY MODAL ── */}
       <OpportunityModal
