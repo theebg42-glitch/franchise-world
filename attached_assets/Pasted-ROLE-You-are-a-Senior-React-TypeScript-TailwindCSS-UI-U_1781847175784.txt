@@ -1,0 +1,275 @@
+ROLE
+
+You are a Senior React, TypeScript, TailwindCSS, UI/UX Designer and QA Engineer.
+
+PROJECT
+
+Existing Franchise World Consultant Landing Page.
+
+IMPORTANT
+
+Do NOT redesign the page from scratch.
+
+Preserve the current layout, branding, colors, animations, responsiveness, payment flow, CTA functionality, and overall user journey.
+
+Only implement the requested changes and perform a complete UI/UX QA audit.
+
+---
+
+CHANGE #1 – REMOVE HERO CTA
+
+Remove the secondary button:
+
+❌ Browse Opportunities
+
+Keep only the primary CTA:
+
+✅ Unlock Daewoo Access – ₹500 Only
+
+The hero section should have a single clear conversion action.
+
+---
+
+CHANGE #2 – OPPORTUNITY SECTION CLEANUP
+
+In the brand opportunity section remove these tabs completely:
+
+❌ Downloads
+❌ Training Videos
+❌ Sales Contact
+
+Keep only:
+
+✅ Overview
+✅ Investment Details
+✅ Earnings Calculator
+
+After removing the tabs:
+
+• Re-align the tab navigation.
+• Ensure equal spacing.
+• Maintain desktop and mobile responsiveness.
+• Remove all unused code/components related to deleted tabs.
+
+---
+
+CHANGE #3 – SINGLE CTA ACROSS ALL TABS
+
+Currently each tab may have different actions.
+
+Implement ONE unified CTA across:
+
+Overview
+Investment Details
+Earnings Calculator
+
+Use:
+
+Button Text:
+"Unlock Daewoo Access – ₹500 Only"
+
+Subtext:
+"One-time unlock fee · Instant access · Dedicated support"
+
+Requirements:
+
+• Same CTA component reused everywhere.
+• Sticky positioning on mobile after user scrolls through opportunity section.
+• Consistent styling across all tabs.
+
+---
+
+CHANGE #4 – WHAT YOU GET FOR ₹500
+
+Remove this card completely:
+
+❌ Sales Scripts
+❌ Ready-to-use scripts to confidently pitch opportunities.
+
+After removal:
+
+• Rebalance remaining cards.
+• Maintain equal grid spacing.
+• No empty gaps.
+• Desktop and mobile layouts should remain visually balanced.
+
+Remaining cards:
+
+✅ Investor Pitch Decks
+✅ Brand Videos
+✅ Training Support
+✅ Dedicated Relationship Manager
+✅ Dedicated CRM Access
+
+---
+
+CHANGE #5 – SUCCESS STORIES SECTION
+
+Currently consultant cards have:
+
+❌ Video Play Button Overlay
+❌ Watch Story Button
+
+Remove both completely.
+
+Requirements:
+
+• Keep consultant image.
+• Keep earnings amount.
+• Keep testimonial text.
+• Keep brand name.
+• Keep consultant details.
+
+Card should look premium and clean.
+
+After removal:
+
+• Re-center card content.
+• Improve spacing.
+• Ensure consistent card height.
+• Remove all unused modal/video code.
+
+---
+
+CHANGE #6 – BRAND AMBASSADOR HERO VISUAL
+
+I will upload a PNG image of the Brand Ambassador.
+
+DO NOT simply place the PNG on the page.
+
+Create a premium hero composition.
+
+Requirements:
+
+• Blend ambassador naturally into hero background.
+• Use subtle gradient overlays.
+• Use soft glow effects.
+• Use depth and lighting.
+• Create a luxury/premium business look.
+• Make ambassador feel part of the hero artwork.
+• No visible image box.
+• No visible image border.
+• No hard cutout appearance.
+
+Design Direction:
+
+Reference:
+Apple Landing Pages
+Tesla Hero Sections
+Premium SaaS Hero Designs
+
+Hero Layout:
+
+Left:
+Headline
+Subheadline
+CTA
+
+Right:
+Integrated Ambassador Artwork
+
+Desktop:
+Artwork occupies 40–45% width.
+
+Mobile:
+Artwork stacks elegantly above content.
+
+Optimize image loading and responsiveness.
+
+---
+
+CHANGE #7 – CONTENT QA VALIDATION
+
+I will upload the latest landing page content document.
+
+Cross-check every section against the document.
+
+Validate:
+
+Hero copy
+Opportunity section
+Investment details
+Highlights
+Why This Brand
+What You Get for ₹500
+Calculator content
+Success stories
+FAQs
+Final CTA
+
+Requirements:
+
+• Correct spelling mistakes.
+• Correct grammar issues.
+• Remove duplicate content.
+• Fix inconsistent capitalization.
+• Fix spacing issues.
+• Fix punctuation issues.
+• Standardize currency formatting.
+• Standardize percentage formatting.
+
+Example:
+
+₹25L – ₹1 Cr+
+1%
+₹5 Lakhs
+
+Use consistent formatting throughout.
+
+---
+
+CHANGE #8 – COMPLETE UI ALIGNMENT PASS
+
+Perform a full visual audit.
+
+Fix:
+
+• Inconsistent padding
+• Inconsistent margins
+• Uneven card heights
+• Button alignment issues
+• Mobile overflow issues
+• Section spacing issues
+• Typography hierarchy issues
+• Responsive breakpoints
+
+Ensure:
+
+• Pixel-perfect desktop view
+• Pixel-perfect tablet view
+• Pixel-perfect mobile view
+
+---
+
+CHANGE #9 – PERFORMANCE CLEANUP
+
+Remove unused:
+
+• Components
+• Imports
+• Tabs
+• Modals
+• Event handlers
+• State variables
+
+Optimize:
+
+• Bundle size
+• Rendering
+• Image loading
+
+---
+
+FINAL DELIVERABLE
+
+Provide:
+
+1. Summary of all implemented changes.
+2. QA checklist.
+3. Responsive validation report.
+4. List of removed components.
+5. List of updated components.
+6. Confirmation that no existing payment or CTA functionality was broken.
+7. Confirmation that all content matches the uploaded document.
+
+This is a production deployment update, so verify everything before completion.
