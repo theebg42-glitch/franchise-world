@@ -389,16 +389,19 @@ export const opportunities: Opportunity[] = [
     commission: "Up to 1%",
     demandTag: "Validated",
     opportunityHighlights: [
-      "District Partner – ₹25L+",
-      "Regional Partner – ₹50L+",
-      "Strategic Expansion Partner – ₹1 Cr+",
-      "160+ countries presence",
-      "Rapid India expansion"
+      "Daewoo Select Store – ₹15 Lakhs",
+      "Daewoo Prime Store – ₹25 Lakhs",
+      "Daewoo Signature Store – ₹40 Lakhs",
+      "District Partner – Up to ₹1.5 Cr",
+      "Statewide Master Franchise / Super Stockist – ₹2 Cr",
+      "160+ countries presence"
     ],
     investmentDetails: [
-      { label: "District Partner", value: "₹25L+" },
-      { label: "Regional Partner", value: "₹50L+" },
-      { label: "Strategic Expansion Partner", value: "₹1 Cr+" }
+      { label: "Daewoo Select Store", value: "₹15 Lakhs" },
+      { label: "Daewoo Prime Store", value: "₹25 Lakhs" },
+      { label: "Daewoo Signature Store", value: "₹40 Lakhs" },
+      { label: "District Partner", value: "Up to ₹1.5 Cr" },
+      { label: "Statewide Master Franchise / Super Stockist", value: "₹2 Cr" }
     ],
     salesContact: "921XX XXXXX",
     salesContactFull: "9216678901"

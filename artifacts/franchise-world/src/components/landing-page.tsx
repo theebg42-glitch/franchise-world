@@ -520,7 +520,7 @@ export function LandingPage() {
         </SectionBlock>
 
         {/* ── POST-FAQ CTA ── */}
-        <section className="py-14 pb-28 md:pb-14 text-center px-4">
+        <section className="py-14 text-center px-4">
           <p className="text-sm font-semibold uppercase tracking-widest text-brand-red mb-3">Your Next Move</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-2 leading-tight">
             Still Have Doubts?<br className="hidden sm:block" />{" "}
