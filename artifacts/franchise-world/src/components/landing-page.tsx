@@ -233,7 +233,7 @@ export function LandingPage() {
               <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center gap-2.5 rounded-xl border border-white/30 bg-white/85 px-3 py-2.5 shadow-xl backdrop-blur-md">
                 <CheckCircle className="h-4 w-4 shrink-0 text-brand-red" />
                 <p className="text-xs font-semibold leading-tight text-zinc-900">
-                  Franchise World — Brand Ambassador
+                  Supported by Boman Irani, Bollywood Actor &amp; Brand Ambassador
                 </p>
               </div>
             </div>
@@ -353,17 +353,6 @@ export function LandingPage() {
                             <p className="text-sm text-zinc-600 leading-relaxed">{daewoo.about}</p>
                           </div>
                         </div>
-                        {!isUnlocked(daewoo.id) && (
-                          <div className="flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
-                            <div>
-                              <p className="font-bold text-sm">Unlock Full Access</p>
-                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} · One-time fee · Instant access</p>
-                            </div>
-                            <Button className="shrink-0 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
-                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
-                            </Button>
-                          </div>
-                        )}
                       </div>
                     )}
 
@@ -404,17 +393,6 @@ export function LandingPage() {
                             </table>
                           </div>
                         )}
-                        {!isUnlocked(daewoo.id) && (
-                          <div className="flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
-                            <div>
-                              <p className="font-bold text-sm">Unlock Full Access</p>
-                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} · One-time fee · Instant access</p>
-                            </div>
-                            <Button className="shrink-0 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
-                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
-                            </Button>
-                          </div>
-                        )}
                       </div>
                     )}
 
@@ -425,17 +403,6 @@ export function LandingPage() {
                           See how much you can earn by referring investors to <strong>{daewoo.name}</strong>.
                         </p>
                         <EarningsCalculator compact />
-                        {!isUnlocked(daewoo.id) && (
-                          <div className="mt-4 flex flex-col gap-3 rounded-xl border border-red-100 bg-red-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
-                            <div>
-                              <p className="font-bold text-sm">Unlock Full Access</p>
-                              <p className="text-xs text-zinc-500">Pay {UNLOCK_AMOUNT} · One-time fee · Instant access</p>
-                            </div>
-                            <Button className="shrink-0 h-auto py-2" onClick={() => openLeadForm(daewoo)}>
-                              <Lock className="h-4 w-4 shrink-0" /> Unlock Daewoo Access – ₹500/- Only
-                            </Button>
-                          </div>
-                        )}
                       </div>
                     )}
 
